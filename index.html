@@ -59,8 +59,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans
 .who-t{background:#E1F5EE;color:#0F6E56}.who-s{background:#EEEDFE;color:#3C3489}
 .wrong-section{margin-top:10px;padding:10px;background:#f8f8f6;border-radius:8px}
 .wrong-section-title{font-size:11px;font-weight:500;color:#666;margin-bottom:6px}
-.wrong-item{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid #eee;font-size:12px}
+.wrong-item{display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px;flex-wrap:wrap}
 .wrong-item:last-child{border-bottom:none}
+.understood{background:#E1F5EE!important;opacity:0.7}
 .wrong-num{font-weight:500;width:32px;flex-shrink:0}
 .wrong-hist{display:flex;gap:2px;flex-wrap:wrap;flex:1}
 .retry-badge{display:inline-flex;align-items:center;background:#FAEEDA;color:#854F0B;border-radius:6px;padding:1px 6px;font-size:11px;font-weight:500;margin-left:4px;flex-shrink:0}
@@ -254,6 +255,40 @@ function getP(sid,wbId,key){
 function setP(sid,wbId,key,val){if(!D.progress[sid])D.progress[sid]={};if(!D.progress[sid][wbId])D.progress[sid][wbId]={};D.progress[sid][wbId][key]=val;save();}
 function effectiveCurrent(p){if(p.teacher&&p.teacher.current!=null)return p.teacher.current;if(p.student&&p.student.current!=null)return p.student.current;return null;}
 function hasAnyWrong(p){return(p.teacher&&p.teacher.history||[]).some(h=>h==='X')||(p.student&&p.student.history||[]).some(h=>h==='X');}
+
+// 이해완료 여부
+function isUnderstood(sid,wbId,key){return D.understood&&D.understood[sid]&&D.understood[sid][wbId]&&D.understood[sid][wbId][key];}
+// 이해완료 토글
+function toggleUnderstood(sid,wbId,key){
+  if(!D.understood)D.understood={};
+  if(!D.understood[sid])D.understood[sid]={};
+  if(!D.understood[sid][wbId])D.understood[sid][wbId]={};
+  D.understood[sid][wbId][key]=!D.understood[sid][wbId][key];
+  save();
+}
+
+// 오답 이력 아이템 HTML 생성 (공통)
+function wrongItemHtml(sid,wbId,num,p,role){
+  const key=`${p._chId}_${num}`;
+  const tH=p.teacher&&p.teacher.history||[];
+  const sH=p.student&&p.student.history||[];
+  const xCnt=[...tH,...sH].filter(h=>h==='X').length;
+  const solved=effectiveCurrent(p)==='O';
+  const understood=isUnderstood(sid,wbId,key);
+  const histHtml=role==='parent'
+    ?[...tH,...sH].map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`).join('')
+    :[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">${role==='teacher'?'학':'나'}</span>`)].join('');
+  return`<div class="wrong-item ${understood?'understood':''}">
+    <div class="wrong-num">${num}번</div>
+    <div class="wrong-hist">${histHtml}</div>
+    ${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}
+    ${understood
+      ?`<span style="font-size:10px;color:#0F6E56;font-weight:500;white-space:nowrap">✅ 이해완료</span>
+        <button onclick="toggleUnderstood('${sid}','${wbId}','${key}');${role==='teacher'?`refreshWrongSection('${sid}','${wbId}','${p._chId}')`:(role==='student'?`showStudentChapter('${sid}','${wbId}','${p._chId}')`:` renderParentProgress(D.students.find(s=>s.id==='${sid}')&&_parentStudent)`)}" style="background:none;border:none;color:#aaa;font-size:10px;cursor:pointer;white-space:nowrap">취소</button>`
+      :`<button onclick="toggleUnderstood('${sid}','${wbId}','${key}');${role==='teacher'?`refreshWrongSection('${sid}','${wbId}','${p._chId}')`:(role==='student'?`showStudentChapter('${sid}','${wbId}','${p._chId}')`:` renderParentProgress(_parentStudent)`)}" style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:6px;color:#0F6E56;font-size:10px;padding:2px 7px;cursor:pointer;white-space:nowrap;font-family:inherit">이해완료</button>`
+    }
+  </div>`;
+}
 function getTotalRetries(sid){
   let t=0;(D.students.find(s=>s.id===sid)?.wbIds||[]).forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
     wb.chapters.forEach(ch=>{for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);t+=(p.teacher.history||[]).filter(h=>h==='X').length+(p.student.history||[]).filter(h=>h==='X').length;}});});
@@ -422,14 +457,15 @@ function showStudentChapter(sid,wbId,chId){
   const wI=[];for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p))wI.push({num:i,p});}
   if(wI.length){
     html+=`<div class="wrong-section"><div class="wrong-section-title">오답 이력 (${wI.length}문제)</div>`;
-    wI.forEach(({num,p})=>{const tH=p.teacher.history||[],sH=p.student.history||[];const xCnt=[...tH,...sH].filter(h=>h==='X').length;const solved=effectiveCurrent(p)==='O';
-      html+=`<div class="wrong-item"><div class="wrong-num">${num}번</div><div class="wrong-hist">${[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">나</span>`)].join('')}</div>${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}<div style="font-size:11px;color:#888">${solved?'해결':''}</div></div>`;});
+    wI.forEach(({num,p})=>{p._chId=chId;html+=wrongItemHtml(sid,wbId,num,p,'student');});
     html+=`</div>`;
   }
   html+=`<div style="margin-top:12px"><button class="btn" onclick="showStudentScreen(D.students.find(s=>s.id==='${sid}'))" style="width:100%;padding:10px">← 단원 목록으로</button></div>`;
   document.getElementById('student-content').innerHTML=html;
 }
-function toggleHwPage(sid,page,cb){
+function refreshWrongSection(sid,wbId,chId){
+  showChapterDetail(sid,wbId,chId);
+}
   if(!D.homework||!D.homework[sid])return;
   if(!D.homework[sid].checkedPages)D.homework[sid].checkedPages=[];
   if(cb.checked){
@@ -552,8 +588,7 @@ function showChapterDetail(sid,wbId,chId){
   }
   const wI=[];for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p))wI.push({num:i,p});}
   if(wI.length){html+=`<div class="wrong-section" id="twrong-${sid}-${wbId}-${chId}"><div class="wrong-section-title">오답 이력 (${wI.length}문제)</div>`;
-    wI.forEach(({num,p})=>{const tH=p.teacher.history||[],sH=p.student.history||[];const xCnt=[...tH,...sH].filter(h=>h==='X').length;const solved=effectiveCurrent(p)==='O';
-      html+=`<div class="wrong-item"><div class="wrong-num">${num}번</div><div class="wrong-hist">${[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">학</span>`)].join('')}</div>${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}<div style="font-size:11px;color:#888">${solved?'해결':''}</div></div>`;});
+    wI.forEach(({num,p})=>{p._chId=chId;html+=wrongItemHtml(sid,wbId,num,p,'teacher');});
     html+=`</div>`;}else html+=`<div id="twrong-${sid}-${wbId}-${chId}"></div>`;
 
   html+=`<div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
@@ -1136,8 +1171,7 @@ function renderParentProgress(student){
       html+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:500">${ch.name}</div><span style="font-size:12px;font-weight:500;color:${cp===100?'#0F6E56':'#888'}">${cp}%</span></div>
         <div class="progress-bar" style="margin-bottom:${chWrong.length?'10px':'0'}"><div class="progress-fill" style="width:${cp}%"></div></div>`;
       if(chWrong.length){html+=`<div style="font-size:11px;font-weight:500;color:#888;margin-bottom:5px">오답 이력</div>`;
-        chWrong.forEach(({num,p})=>{const tH=p.teacher.history||[],sH=p.student.history||[];const xCnt=[...tH,...sH].filter(h=>h==='X').length;const solved=effectiveCurrent(p)==='O';
-          html+=`<div class="wrong-item"><div class="wrong-num">${num}번</div><div class="wrong-hist">${[...tH,...sH].map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`).join('')}</div>${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}<div style="font-size:11px;color:#888">${solved?'해결':''}</div></div>`;});}
+        chWrong.forEach(({num,p})=>{p._chId=ch.id;html+=wrongItemHtml(student.id,wbId,num,p,'parent');});}
       html+=`</div>`;});
   });
   html+=`<div style="font-size:11px;color:#bbb;text-align:center;margin-top:8px">📅 ${new Date().toLocaleDateString('ko-KR')} 기준</div>`;
