@@ -466,6 +466,7 @@ function showStudentChapter(sid,wbId,chId){
 function refreshWrongSection(sid,wbId,chId){
   showChapterDetail(sid,wbId,chId);
 }
+function toggleHwPage(sid,page,cb){
   if(!D.homework||!D.homework[sid])return;
   if(!D.homework[sid].checkedPages)D.homework[sid].checkedPages=[];
   if(cb.checked){
