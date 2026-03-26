@@ -5,1284 +5,392 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>현대수학 진도 관리</title>
 
-<!-- PWA 설정 -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="현대수학">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#1D9E75">
-<meta name="description" content="현대수학 공부방 진도 관리 시스템">
-
-<!-- 앱 아이콘 (초록색 수학 아이콘) -->
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMUQ5RTc1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzBGNkU1NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ic2hpbmUiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmZmZmZjtzdG9wLW9wYWNpdHk6MC4xOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZmZmZmY7c3RvcC1vcGFjaXR5OjAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEwIiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iMjU2IiByeD0iMTEwIiBmaWxsPSJ1cmwoI3NoaW5lKSIvPgogIDxjaXJjbGUgY3g9IjQzMCIgY3k9IjkwIiByPSI5MCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNSIvPgogIDxjaXJjbGUgY3g9IjgwIiBjeT0iNDMwIiByPSI3MCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNSIvPgogIDwhLS0gSCDrj4TtmJUgLS0+CiAgPHJlY3QgeD0iMTA4IiB5PSIxMTAiIHdpZHRoPSI2OCIgaGVpZ2h0PSIyMjAiIHJ4PSIxNCIgZmlsbD0id2hpdGUiLz4KICA8cmVjdCB4PSIzMzYiIHk9IjExMCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjIyMCIgcng9IjE0IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjEwOCIgeT0iMTk1IiB3aWR0aD0iMjk2IiBoZWlnaHQ9IjY1IiByeD0iMTIiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSDtmITrjIDsiJjtlZkgLSDsnpHqsowgNOq4gOyekCDrqqjrkZAg7ZGc7IucIC0tPgogIDx0ZXh0IHg9IjI1NiIgeT0iMzk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBLUiwgc2Fucy1zZXJpZiIKICAgIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjk1IgogICAgdGV4dExlbmd0aD0iMjgwIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciPu2YhOuMgOyImO2VmTwvdGV4dD4KPC9zdmc+Cg==">
-
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgx=">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
-.app{max-width:480px;margin:0 auto;min-height:100vh;background:#fff}
-.screen{display:none;padding:16px}.screen.active{display:block}
-.tab-bar{display:flex;gap:2px;margin-bottom:18px;border-bottom:1px solid #e5e5e0;flex-wrap:wrap}
-.tab{padding:8px 12px;font-size:13px;cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;color:#888;border-radius:4px 4px 0 0}
-.tab.active{color:#111;font-weight:500;border-bottom:2px solid #1D9E75}
-.sec{display:none}.sec.active{display:block}
-.card{background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:500;display:inline-block}
-.bg-green{background:#E1F5EE;color:#0F6E56}.bg-red{background:#FAECE7;color:#993C1D}
-.bg-gray{background:#F1EFE8;color:#5F5E5A}.bg-purple{background:#EEEDFE;color:#3C3489}
-.bg-blue{background:#E6F1FB;color:#185FA5}
-.btn{padding:6px 12px;border-radius:6px;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:12px;color:#333;font-family:inherit}
-.btn:hover{background:#f5f5f3}
-.btn-g{background:#1D9E75;color:#fff;border-color:#1D9E75}.btn-g:hover{background:#0F6E56}
-.btn-r{background:#D85A30;color:#fff;border-color:#D85A30;font-size:11px;padding:3px 7px}
-.btn-b{background:#185FA5;color:#fff;border-color:#185FA5}
-.inp{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#fff;color:#111;font-family:inherit}
-.inp:focus{outline:none;box-shadow:0 0 0 2px #9FE1CB;border-color:#1D9E75}
-.sel{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#fff;color:#111;cursor:pointer;font-family:inherit}
-.lbl{font-size:12px;color:#666;margin-bottom:3px}
-.row{display:flex;gap:8px;align-items:flex-end}.f1{flex:1}
-.stat{background:#f8f8f6;border-radius:8px;padding:10px;text-align:center}
-.stat-n{font-size:18px;font-weight:500}.stat-l{font-size:11px;color:#888;margin-top:2px}
-.prob-row{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid #f0f0ec}
-.prob-row:last-child{border-bottom:none}
-.prob-num{width:26px;font-size:12px;font-weight:500;color:#888;flex-shrink:0;text-align:right}
-.ox-wrap{display:flex;gap:3px}
-.ox-btn{width:32px;height:28px;border-radius:5px;border:1px solid #e0e0da;font-size:13px;font-weight:500;cursor:pointer;background:#f5f5f3;color:#aaa;font-family:inherit}
-.ox-btn.o-on{background:#E1F5EE;color:#0F6E56;border-color:#9FE1CB;font-weight:700}
-.ox-btn.x-on{background:#FAECE7;color:#993C1D;border-color:#F0997B;font-weight:700}
-.ox-btn:disabled{opacity:0.35;cursor:not-allowed}
-.history-wrap{flex:1;display:flex;flex-wrap:wrap;gap:2px;align-items:center;padding-left:2px}
-.hist-chip{font-size:10px;padding:1px 4px;border-radius:3px;font-weight:500}
-.hist-o{background:#E1F5EE;color:#0F6E56}.hist-x{background:#FAECE7;color:#993C1D}
-.hist-t{font-size:9px;padding:1px 3px;border-radius:3px;background:#EEEDFE;color:#3C3489;font-weight:500}
-.who-tag{font-size:9px;padding:1px 5px;border-radius:4px;flex-shrink:0}
-.who-t{background:#E1F5EE;color:#0F6E56}.who-s{background:#EEEDFE;color:#3C3489}
-.wrong-section{margin-top:10px;padding:10px;background:#f8f8f6;border-radius:8px}
-.wrong-section-title{font-size:11px;font-weight:500;color:#666;margin-bottom:6px}
-.wrong-item{display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid #eee;font-size:12px;flex-wrap:wrap}
-.wrong-item:last-child{border-bottom:none}
-.understood{background:#E1F5EE!important;opacity:0.7}
-.wrong-num{font-weight:500;width:32px;flex-shrink:0}
-.wrong-hist{display:flex;gap:2px;flex-wrap:wrap;flex:1}
-.retry-badge{display:inline-flex;align-items:center;background:#FAEEDA;color:#854F0B;border-radius:6px;padding:1px 6px;font-size:11px;font-weight:500;margin-left:4px;flex-shrink:0}
-.retry-badge.many{background:#FAECE7;color:#993C1D}
-.ch-title{font-size:13px;font-weight:500;margin:14px 0 6px;border-left:3px solid #1D9E75;padding-left:8px}
-.wb-header{font-size:14px;font-weight:600;margin:16px 0 8px;color:#1D9E75;display:flex;align-items:center;gap:6px}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:100}
-.modal-box{background:#fff;border-radius:14px;padding:18px;width:390px;max-width:92vw;max-height:88vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
-.mtitle{font-size:15px;font-weight:500;margin-bottom:14px}
-.progress-bar{height:6px;border-radius:3px;background:#eee;overflow:hidden;margin-top:5px}
-.progress-fill{height:100%;background:#1D9E75;border-radius:3px}
-.progress-fill-p{height:100%;background:#534AB7;border-radius:3px}
-.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
-.tpl-card{border:1px solid #ddd;border-radius:10px;padding:12px;cursor:pointer;text-align:center;transition:all 0.15s}
-.tpl-card:hover{border-color:#1D9E75;background:#f0faf6}
-.tpl-card.selected{border-color:#1D9E75;border-width:2px;background:#E1F5EE}
-.pin-lock{text-align:center;padding:28px 20px}
-.pin-display{display:flex;justify-content:center;gap:14px;margin:18px 0}
-.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid #ccc;background:transparent}
-.pin-dot.filled{background:#1D9E75;border-color:#1D9E75}
-.pin-dot.filled-p{background:#534AB7;border-color:#534AB7}
-.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:220px;margin:0 auto}
-.pin-key{height:54px;border-radius:12px;border:1px solid #e0e0da;background:#fff;font-size:20px;font-weight:500;cursor:pointer;color:#111;font-family:inherit}
-.pin-key:hover{background:#f5f5f3}
-.pin-key:active{background:#E1F5EE;transform:scale(0.96)}
-.error-msg{color:#D85A30;font-size:13px;margin-top:8px;min-height:20px}
-.pin-badge{display:inline-flex;background:#E6F1FB;color:#185FA5;border-radius:8px;padding:2px 8px;font-size:11px;font-family:monospace}
-.pin-badge-p{display:inline-flex;background:#EEEDFE;color:#3C3489;border-radius:8px;padding:2px 8px;font-size:11px;font-family:monospace}
-.tip{font-size:11px;color:#aaa}
-.role-card{border:1px solid #e8e8e4;border-radius:12px;padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;margin-bottom:10px;transition:all 0.15s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.role-card:hover{border-color:#1D9E75;background:#f0faf6}
-.role-icon{font-size:28px;flex-shrink:0}
-.role-title{font-size:15px;font-weight:500}
-.role-desc{font-size:12px;color:#888;margin-top:2px}
-.notice{background:#EEEDFE;border-radius:8px;padding:10px;font-size:12px;color:#3C3489;margin-bottom:10px}
-.cheer-box{background:linear-gradient(135deg,#E1F5EE,#E6F1FB);border-radius:10px;padding:8px 12px;margin-bottom:8px;font-size:12px;color:#0F6E56;font-weight:500;display:flex;align-items:center;gap:8px}
-.wb-chip{display:inline-flex;align-items:center;gap:4px;background:#f0faf6;border:1px solid #9FE1CB;border-radius:8px;padding:3px 8px;font-size:11px;color:#0F6E56;margin:2px}
-.graph-tab{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
-.graph-tab-btn{padding:5px 11px;border-radius:12px;font-size:12px;border:1px solid #ddd;background:#f5f5f3;cursor:pointer;color:#666;font-family:inherit}
-.graph-tab-btn.active{background:#1D9E75;color:#fff;border-color:#1D9E75}
-.retry-rank{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0ec}
-.retry-rank:last-child{border-bottom:none}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; }
+    .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; position: relative; }
+    .screen { display: none; padding: 16px; }
+    .screen.active { display: block; }
+    
+    /* UI 요소 */
+    .tab-bar { display: flex; gap: 2px; margin-bottom: 18px; border-bottom: 1px solid #e5e5e0; }
+    .tab { padding: 10px; font-size: 13px; cursor: pointer; background: none; border: none; border-bottom: 2px solid transparent; color: #888; flex: 1; }
+    .tab.active { color: #111; font-weight: 600; border-bottom: 2px solid #1D9E75; }
+    .sec { display: none; }
+    .sec.active { display: block; }
+    
+    .card { background: #fff; border: 1px solid #e8e8e4; border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .btn { padding: 8px 12px; border-radius: 6px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-size: 12px; font-family: inherit; }
+    .btn-g { background: #1D9E75; color: #fff; border-color: #1D9E75; }
+    .btn-r { background: #D85A30; color: #fff; border-color: #D85A30; }
+    
+    .inp { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 10px; }
+    
+    /* PIN 패드 */
+    .pin-lock { text-align: center; padding: 40px 20px; }
+    .pin-display { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+    .pin-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #ccc; }
+    .pin-dot.filled { background: #1D9E75; border-color: #1D9E75; }
+    .pin-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 240px; margin: 0 auto; }
+    .pin-key { height: 60px; border-radius: 12px; border: 1px solid #e0e0da; background: #fff; font-size: 20px; cursor: pointer; }
+    
+    /* 역할 카드 */
+    .role-card { border: 1px solid #e8e8e4; border-radius: 12px; padding: 20px; cursor: pointer; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; transition: 0.2s; }
+    .role-card:hover { background: #f0faf6; border-color: #1D9E75; }
+    .role-icon { font-size: 30px; }
+    
+    /* 프로그레스바 */
+    .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #1D9E75; transition: 0.3s; }
+
+    /* 모달 */
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+    .modal-box { background: #fff; border-radius: 15px; padding: 20px; width: 90%; max-width: 400px; max-height: 80vh; overflow-y: auto; }
 </style>
 </head>
 <body>
+
 <div class="app">
-<div class="screen active" id="scr-home" style="padding:40px 16px;text-align:center">
-  <div style="font-size:11px;font-weight:600;color:#1D9E75;letter-spacing:2px;margin-bottom:8px">HYUNDAI MATH</div>
-  <div style="font-size:26px;font-weight:600;margin-bottom:4px">현대수학</div>
-  <div style="font-size:13px;color:#888;margin-bottom:36px">진도 관리 시스템</div>
-  <div class="role-card" onclick="gotoTeacher()"><div class="role-icon">👩‍🏫</div><div><div class="role-title">선생님</div><div class="role-desc">전체 관리 · O/X 입력 · 그래프</div></div></div>
-  <div class="role-card" onclick="gotoStudent()"><div class="role-icon">✏️</div><div><div class="role-title">학생</div><div class="role-desc">O/X 직접 입력 · 진도 확인</div></div></div>
-  <div class="role-card" onclick="gotoParent()"><div class="role-icon">👪</div><div><div class="role-title">학부모</div><div class="role-desc">내 아이 진도 · 오답 · 그래프</div></div></div>
-</div>
-<div class="screen" id="scr-teacher-pin"><div class="pin-lock">
-  <div style="font-size:16px;font-weight:500;margin-bottom:4px">선생님 로그인</div>
-  <div style="font-size:12px;color:#888">관리자 PIN을 입력해 주세요</div>
-  <div class="pin-display"><div class="pin-dot" id="td0"></div><div class="pin-dot" id="td1"></div><div class="pin-dot" id="td2"></div><div class="pin-dot" id="td3"></div></div>
-  <div class="pin-pad" id="tpin-pad"></div><div class="error-msg" id="tpin-err"></div>
-  <button class="btn" style="margin-top:16px" onclick="goHome()">← 돌아가기</button>
-</div></div>
-<div class="screen" id="scr-teacher">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-    <div><div style="font-size:17px;font-weight:600">현대수학 관리</div><div style="font-size:12px;color:#888" id="wb-disp">문제집을 먼저 등록해 주세요</div></div>
-    <div style="display:flex;gap:6px"><button class="btn" onclick="changePinModal()">PIN 설정</button><button class="btn" onclick="goHome()">로그아웃</button></div>
-  </div>
-  <div class="tab-bar">
-    <button class="tab active" id="tab-students" onclick="openTab('students')">학생 관리</button>
-    <button class="tab" id="tab-workbooks" onclick="openTab('workbooks')">문제집</button>
-    <button class="tab" id="tab-overview" onclick="openTab('overview')">전체 현황</button>
-    <button class="tab" id="tab-graph" onclick="openTab('graph')">그래프</button>
-  </div>
-  <div class="sec active" id="sec-students"></div>
-  <div class="sec" id="sec-workbooks"></div>
-  <div class="sec" id="sec-overview"></div>
-  <div class="sec" id="sec-graph"></div>
-</div>
-<div class="screen" id="scr-student-pin"><div class="pin-lock">
-  <div style="font-size:16px;font-weight:500;margin-bottom:4px">학생 로그인</div>
-  <div style="font-size:12px;color:#888">내 PIN 4자리를 눌러 주세요</div>
-  <div class="pin-display"><div class="pin-dot" id="sd0"></div><div class="pin-dot" id="sd1"></div><div class="pin-dot" id="sd2"></div><div class="pin-dot" id="sd3"></div></div>
-  <div class="pin-pad" id="spin-pad"></div><div class="error-msg" id="spin-err"></div>
-  <button class="btn" style="margin-top:16px" onclick="goHome()">← 돌아가기</button>
-</div></div>
-<div class="screen" id="scr-student">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-    <div><div style="font-size:11px;color:#534AB7;font-weight:600;margin-bottom:2px">학생 모드</div><div style="font-size:17px;font-weight:600" id="student-name-disp">안녕하세요</div></div>
-    <div style="display:flex;gap:6px">
-      <button class="btn" id="student-msg-btn" onclick="showStudentMsgPopup()" style="background:#E8F4FD;border-color:#5BA4D4;color:#185FA5;display:none">💌 메시지</button>
-      <button class="btn" onclick="goHome();window._studentMsgShown=false;">← 나가기</button>
+    <div class="screen active" id="scr-home" style="text-align:center; padding-top:60px;">
+        <div style="color:#1D9E75; font-weight:bold; letter-spacing:2px; margin-bottom:10px;">HYUNDAI MATH</div>
+        <h1 style="margin-bottom:40px;">현대수학 관리 시스템</h1>
+        <div class="role-card" onclick="openPinPad('teacher')">
+            <div class="role-icon">👩‍🏫</div>
+            <div style="text-align:left;"><div style="font-weight:600;">선생님 모드</div><div style="font-size:12px; color:#888;">전체 진도 및 학생 관리</div></div>
+        </div>
+        <div class="role-card" onclick="openPinPad('student')">
+            <div class="role-icon">✏️</div>
+            <div style="text-align:left;"><div style="font-weight:600;">학생 모드</div><div style="font-size:12px; color:#888;">본인 진도 확인 및 O/X 입력</div></div>
+        </div>
+        <div class="role-card" onclick="openPinPad('parent')">
+            <div class="role-icon">👪</div>
+            <div style="text-align:left;"><div style="font-weight:600;">학부모 모드</div><div style="font-size:12px; color:#888;">자녀 학습 현황 및 그래프</div></div>
+        </div>
     </div>
-  </div>
-  <div id="student-content"></div>
-</div>
-<div class="screen" id="scr-parent-pin"><div class="pin-lock">
-  <div style="font-size:16px;font-weight:500;margin-bottom:4px">학부모 인증</div>
-  <div style="font-size:12px;color:#888">선생님께 받은 4자리 PIN을 눌러 주세요</div>
-  <div class="pin-display"><div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div><div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div></div>
-  <div class="pin-pad" id="ppin-pad"></div><div class="error-msg" id="ppin-err"></div>
-  <button class="btn" style="margin-top:16px" onclick="goHome()">← 돌아가기</button>
-</div></div>
-<div class="screen" id="scr-parent">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-    <div><div style="font-size:11px;color:#1D9E75;font-weight:600;margin-bottom:2px">현대수학</div><div style="font-size:16px;font-weight:600" id="parent-title">진도 현황</div></div>
-    <div style="display:flex;gap:6px">
-      <button class="btn" id="memo-btn" onclick="showMemoPopup()" style="background:#FFF9C4;border-color:#F9A825;color:#795548;display:none">📝 메모</button>
-      <button class="btn" onclick="goHome()">← 나가기</button>
+
+    <div class="screen" id="scr-pin">
+        <div class="pin-lock">
+            <h2 id="pin-title">로그인</h2>
+            <p id="pin-desc" style="font-size:13px; color:#888; margin-top:5px;">PIN 번호를 입력하세요</p>
+            <div class="pin-display">
+                <div class="pin-dot" id="dot0"></div><div class="pin-dot" id="dot1"></div>
+                <div class="pin-dot" id="dot2"></div><div class="pin-dot" id="dot3"></div>
+            </div>
+            <div class="pin-pad" id="pin-pad"></div>
+            <div id="pin-err" style="color:red; font-size:13px; margin-top:15px; height:20px;"></div>
+            <button class="btn" style="margin-top:20px;" onclick="goHome()">이전으로</button>
+        </div>
     </div>
-  </div>
-  <div class="tab-bar">
-    <button class="tab active" id="ptab-progress" onclick="switchParentTab('progress')">진도 현황</button>
-    <button class="tab" id="ptab-graph" onclick="switchParentTab('graph')">그래프</button>
-  </div>
-  <div id="parent-progress" class="sec active"></div>
-  <div id="parent-graph" class="sec"></div>
+
+    <div class="screen" id="scr-teacher">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3>관리자 패널</h3>
+            <button class="btn" onclick="goHome()">로그아웃</button>
+        </div>
+        <div class="tab-bar">
+            <button class="tab active" id="tab-std" onclick="switchTab('std')">학생관리</button>
+            <button class="tab" id="tab-wb" onclick="switchTab('wb')">문제집</button>
+        </div>
+        <div id="sec-std" class="sec active"></div>
+        <div id="sec-wb" class="sec"></div>
+    </div>
+
+    <div class="screen" id="scr-main">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h3 id="user-title">환영합니다</h3>
+            <button class="btn" onclick="goHome()">나가기</button>
+        </div>
+        <div id="user-content"></div>
+    </div>
 </div>
+
+<div id="modal" class="overlay" style="display:none;" onclick="if(event.target===this)closeM()">
+    <div class="modal-box" id="mbox"></div>
 </div>
-<div id="modal" style="display:none" class="overlay" onclick="bgClose(event)"><div class="modal-box" id="mbox"></div></div>
+
 <script>
-const TEMPLATES={
-  math_elem:{icon:'🔢',name:'초등수학',chapters:[{id:'c1',name:'1단원. 자연수의 혼합계산',start:1,end:20},{id:'c2',name:'2단원. 약수와 배수',start:1,end:25},{id:'c3',name:'3단원. 규칙과 대응',start:1,end:20},{id:'c4',name:'4단원. 약분과 통분',start:1,end:25},{id:'c5',name:'5단원. 분수의 덧셈과 뺄셈',start:1,end:30},{id:'c6',name:'6단원. 다각형의 둘레와 넓이',start:1,end:25}]},
-  math_mid:{icon:'📐',name:'중등수학',chapters:[{id:'c1',name:'Ⅰ. 수와 연산',start:1,end:30},{id:'c2',name:'Ⅱ. 문자와 식',start:1,end:35},{id:'c3',name:'Ⅲ. 일차방정식',start:1,end:30},{id:'c4',name:'Ⅳ. 좌표평면과 그래프',start:1,end:30},{id:'c5',name:'Ⅴ. 통계',start:1,end:25}]},
-  math_high:{icon:'📊',name:'고등수학',chapters:[{id:'c1',name:'Ⅰ. 다항식',start:1,end:30},{id:'c2',name:'Ⅱ. 방정식과 부등식',start:1,end:35},{id:'c3',name:'Ⅲ. 도형의 방정식',start:1,end:30},{id:'c4',name:'Ⅳ. 집합과 명제',start:1,end:25},{id:'c5',name:'Ⅴ. 함수',start:1,end:30},{id:'c6',name:'Ⅵ. 경우의 수',start:1,end:25}]},
-  english:{icon:'🔤',name:'영어',chapters:[{id:'c1',name:'Unit 1. Vocabulary',start:1,end:30},{id:'c2',name:'Unit 2. Grammar',start:1,end:25},{id:'c3',name:'Unit 3. Reading',start:1,end:20},{id:'c4',name:'Unit 4. Listening',start:1,end:20},{id:'c5',name:'Unit 5. Writing',start:1,end:15}]}
+/* 데이터 및 초기화 */
+let D = {
+    adminPin: '1234',
+    students: [],
+    workbooks: [],
+    progress: {}
 };
-const SUPABASE_URL='https://mjqadqhdxedgkpooblug.supabase.co';
-const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qcWFkcWhkeGVkZ2twb29ibHVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MTA3ODQsImV4cCI6MjA4OTQ4Njc4NH0.hnyS0x4KxBts5djSs-gCoiSblZnAOBuvd5NRjxCFmic';
 
-const SCOLS=[['#E1F5EE','#0F6E56'],['#E6F1FB','#185FA5'],['#FAEEDA','#854F0B'],['#FAECE7','#993C1D'],['#EEEDFE','#3C3489']];
-let chartInst={};
-let D={adminPin:'1234',workbooks:[],students:[],progress:{}};
+const SUPABASE_URL = 'https://mjqadqhdxedgkpooblug.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qcWFkcWhkeGVkZ2twb29ibHVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MTA3ODQsImV4cCI6MjA4OTQ4Njc4NH0.hnyS0x4KxBts5djSs-gCoiSblZnAOBuvd5NRjxCFmic';
 
-function dbHeaders(){
-  return{
-    'apikey':SUPABASE_KEY,
-    'Authorization':'Bearer '+SUPABASE_KEY,
-    'Content-Type':'application/json'
-  };
+async function saveData() {
+    localStorage.setItem('hyundai_math_data', JSON.stringify(D));
+    try {
+        await fetch(`${SUPABASE_URL}/rest/v1/data?key=eq.main`, {
+            method: 'PATCH',
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ value: JSON.stringify(D) })
+        });
+    } catch(e) { console.error("Save failed", e); }
 }
 
-async function loadFromDB(){
-  try{
-    const res=await fetch(`${SUPABASE_URL}/rest/v1/data?select=value`,{
-      headers:dbHeaders()
-    });
-    if(!res.ok){console.error('load error',res.status);return;}
-    const rows=await res.json();
-    if(rows&&rows.length&&rows[0].value&&rows[0].value!=='{}'){
-      try{D=JSON.parse(rows[0].value);}catch(e){}
+async function loadData() {
+    const local = localStorage.getItem('hyundai_math_data');
+    if(local) D = JSON.parse(local);
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/data?key=eq.main&select=value`, {
+            headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        });
+        const rows = await res.json();
+        if(rows.length > 0) D = JSON.parse(rows[0].value);
+    } catch(e) { console.error("Load failed", e); }
+}
+
+/* 화면 전환 로직 */
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+function goHome() { showScreen('scr-home'); }
+
+/* PIN 입력 시스템 */
+let currentMode = '';
+let pinInput = '';
+
+function openPinPad(mode) {
+    currentMode = mode;
+    pinInput = '';
+    document.getElementById('pin-err').textContent = '';
+    document.getElementById('pin-title').textContent = mode === 'teacher' ? '선생님 로그인' : (mode === 'student' ? '학생 로그인' : '학부모 확인');
+    updatePinDots();
+    renderPinPad();
+    showScreen('scr-pin');
+}
+
+function renderPinPad() {
+    const pad = document.getElementById('pin-pad');
+    const keys = [1,2,3,4,5,6,7,8,9,'C',0,'←'];
+    pad.innerHTML = keys.map(k => `<button class="pin-key" onclick="handlePin('${k}')">${k}</button>`).join('');
+}
+
+function handlePin(k) {
+    if(k === '←') pinInput = pinInput.slice(0, -1);
+    else if(k === 'C') pinInput = '';
+    else if(pinInput.length < 4) pinInput += k;
+    
+    updatePinDots();
+    if(pinInput.length === 4) checkPin();
+}
+
+function updatePinDots() {
+    for(let i=0; i<4; i++) {
+        document.getElementById(`dot${i}`).className = i < pinInput.length ? 'pin-dot filled' : 'pin-dot';
     }
-  }catch(e){
-    console.error('loadFromDB',e);
-    try{const s=localStorage.getItem('sr_v7');if(s)D=JSON.parse(s);}catch(e2){}
-  }
 }
 
-async function save(){
-  const json=JSON.stringify(D);
-  try{localStorage.setItem('sr_v7',json);}catch(e){}
-  try{
-    // 먼저 행이 있는지 확인
-    const chk=await fetch(`${SUPABASE_URL}/rest/v1/data?select=key`,{headers:dbHeaders()});
-    const rows=await chk.json();
-    if(rows&&rows.length>0){
-      // 있으면 update
-      await fetch(`${SUPABASE_URL}/rest/v1/data?key=eq.main`,{
-        method:'PATCH',
-        headers:{...dbHeaders(),'Prefer':'return=minimal'},
-        body:JSON.stringify({value:json})
-      });
+function checkPin() {
+    if(currentMode === 'teacher') {
+        if(pinInput === D.adminPin) { showTeacherMain(); }
+        else { pinError(); }
     } else {
-      // 없으면 insert
-      await fetch(`${SUPABASE_URL}/rest/v1/data`,{
-        method:'POST',
-        headers:{...dbHeaders(),'Prefer':'return=minimal'},
-        body:JSON.stringify({key:'main',value:json})
-      });
+        const std = D.students.find(s => (currentMode === 'student' ? s.studentPin : s.pin) === pinInput);
+        if(std) { showUserMain(std, currentMode); }
+        else { pinError(); }
     }
-  }catch(e){console.error('save',e);}
-}
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function goHome(){showScreen('scr-home');}
-function getWb(id){return D.workbooks.find(w=>w.id===id);}
-function getP(sid,wbId,key){
-  const d=D.progress[sid]&&D.progress[sid][wbId]&&D.progress[sid][wbId][key];
-  if(!d)return{teacher:{history:[],current:null},student:{history:[],current:null}};
-  if(!d.teacher)d.teacher={history:[],current:null};
-  if(!d.student)d.student={history:[],current:null};
-  return d;
-}
-function setP(sid,wbId,key,val){if(!D.progress[sid])D.progress[sid]={};if(!D.progress[sid][wbId])D.progress[sid][wbId]={};D.progress[sid][wbId][key]=val;save();}
-function effectiveCurrent(p){if(p.teacher&&p.teacher.current!=null)return p.teacher.current;if(p.student&&p.student.current!=null)return p.student.current;return null;}
-function hasAnyWrong(p){return(p.teacher&&p.teacher.history||[]).some(h=>h==='X')||(p.student&&p.student.history||[]).some(h=>h==='X');}
-
-// 이해완료 여부
-function isUnderstood(sid,wbId,key){return D.understood&&D.understood[sid]&&D.understood[sid][wbId]&&D.understood[sid][wbId][key];}
-// 이해완료 토글
-function toggleUnderstood(sid,wbId,key){
-  if(!D.understood)D.understood={};
-  if(!D.understood[sid])D.understood[sid]={};
-  if(!D.understood[sid][wbId])D.understood[sid][wbId]={};
-  D.understood[sid][wbId][key]=!D.understood[sid][wbId][key];
-  save();
 }
 
-// 오답 이력 아이템 HTML 생성 (공통)
-function wrongItemHtml(sid,wbId,num,p,role){
-  const key=`${p._chId}_${num}`;
-  const tH=p.teacher&&p.teacher.history||[];
-  const sH=p.student&&p.student.history||[];
-  const xCnt=[...tH,...sH].filter(h=>h==='X').length;
-  const solved=effectiveCurrent(p)==='O';
-  const understood=isUnderstood(sid,wbId,key);
-  const histHtml=role==='parent'
-    ?[...tH,...sH].map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`).join('')
-    :[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">${role==='teacher'?'학':'나'}</span>`)].join('');
-  return`<div class="wrong-item ${understood?'understood':''}">
-    <div class="wrong-num">${num}번</div>
-    <div class="wrong-hist">${histHtml}</div>
-    ${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}
-    ${understood
-      ?`<span style="font-size:10px;color:#0F6E56;font-weight:500;white-space:nowrap">✅ 이해완료</span>
-        <button onclick="toggleUnderstood('${sid}','${wbId}','${key}');${role==='teacher'?`refreshWrongSection('${sid}','${wbId}','${p._chId}')`:(role==='student'?`showStudentChapter('${sid}','${wbId}','${p._chId}')`:` renderParentProgress(D.students.find(s=>s.id==='${sid}')&&_parentStudent)`)}" style="background:none;border:none;color:#aaa;font-size:10px;cursor:pointer;white-space:nowrap">취소</button>`
-      :`<button onclick="toggleUnderstood('${sid}','${wbId}','${key}');${role==='teacher'?`refreshWrongSection('${sid}','${wbId}','${p._chId}')`:(role==='student'?`showStudentChapter('${sid}','${wbId}','${p._chId}')`:` renderParentProgress(_parentStudent)`)}" style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:6px;color:#0F6E56;font-size:10px;padding:2px 7px;cursor:pointer;white-space:nowrap;font-family:inherit">이해완료</button>`
-    }
-  </div>`;
-}
-function getTotalRetries(sid){
-  let t=0;(D.students.find(s=>s.id===sid)?.wbIds||[]).forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
-    wb.chapters.forEach(ch=>{for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);t+=(p.teacher.history||[]).filter(h=>h==='X').length+(p.student.history||[]).filter(h=>h==='X').length;}});});
-  return t;
-}
-function retryIcons(r){
-  if(r===0)return'<span style="color:#ccc;font-size:12px">없음</span>';
-  const f=Math.min(Math.floor(r/3),5),s=Math.min(r%3,2);
-  let ic='';for(let i=0;i<f;i++)ic+='🔥';for(let i=0;i<s;i++)ic+='⭐';if(!ic)ic='✨';
-  return`<span style="font-size:13px">${ic}</span><span style="font-size:11px;color:#854F0B;margin-left:3px;font-weight:500">${r}회</span>`;
-}
-function cheerMsg(r){
-  if(r>=10)return{icon:'🏆',msg:'포기하지 않는 끈기왕!'};
-  if(r>=5)return{icon:'🔥',msg:'다시 도전하는 용기가 대단해요!'};
-  if(r>=2)return{icon:'⭐',msg:'틀려도 다시 푸는 자세 훌륭해요!'};
-  return null;
-}
-function cheerBox(r){const c=cheerMsg(r);if(!c)return'';return`<div class="cheer-box"><span style="font-size:16px">${c.icon}</span><span>${c.msg}</span></div>`;}
-function getStudentStats(sid){
-  let total=0,done=0,wrongCnt=0;
-  (D.students.find(s=>s.id===sid)?.wbIds||[]).forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
-    wb.chapters.forEach(ch=>{for(let i=ch.start;i<=ch.end;i++){total++;const p=getP(sid,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')done++;if(hasAnyWrong(p))wrongCnt++;}});
-  });
-  return{total,done,wrongCnt,pct:total?Math.round(done/total*100):0};
+function pinError() {
+    document.getElementById('pin-err').textContent = '번호가 틀렸습니다.';
+    pinInput = '';
+    setTimeout(updatePinDots, 500);
 }
 
-/* PIN 패드 */
-function buildPinPad(padId,dotPfx,errId,onComplete,fillCls){
-  const pad=document.getElementById(padId);let val='';
-  pad.innerHTML=[1,2,3,4,5,6,7,8,9,'',0,'←'].map(n=>`<button class="pin-key" data-k="${n}">${n}</button>`).join('');
-  pad.onclick=function(e){
-    const btn=e.target.closest('.pin-key');if(!btn)return;
-    const n=btn.dataset.k;document.getElementById(errId).textContent='';
-    if(n==='←')val=val.slice(0,-1);else if(n!==''&&val.length<4)val+=n;
-    for(let i=0;i<4;i++){const d=document.getElementById(dotPfx+i);if(d){d.classList.remove('filled','filled-p');if(i<val.length)d.classList.add(fillCls||'filled');}}
-    if(val.length===4)setTimeout(()=>onComplete(val,()=>{val='';for(let i=0;i<4;i++){const d=document.getElementById(dotPfx+i);if(d)d.classList.remove('filled','filled-p');}}),130);
-  };
+/* 선생님 기능 */
+function showTeacherMain() {
+    showScreen('scr-teacher');
+    renderStdList();
 }
-function gotoTeacher(){showScreen('scr-teacher-pin');buildPinPad('tpin-pad','td','tpin-err',(pin,reset)=>{if(pin===D.adminPin){showScreen('scr-teacher');updateWbDisp();renderStudents();}else{document.getElementById('tpin-err').textContent='비밀번호가 틀렸어요';reset();}});}
-function gotoStudent(){showScreen('scr-student-pin');buildPinPad('spin-pad','sd','spin-err',(pin,reset)=>{const s=D.students.find(s=>s.studentPin===pin);if(s)showStudentScreen(s);else{document.getElementById('spin-err').textContent='PIN이 맞지 않아요. 선생님께 확인해 주세요';reset();}},'filled-p');}
-function gotoParent(){showScreen('scr-parent-pin');buildPinPad('ppin-pad','pd','ppin-err',(pin,reset)=>{const s=D.students.find(s=>s.pin===pin);if(s)showParentScreen(s);else{document.getElementById('ppin-err').textContent='PIN이 맞지 않아요. 선생님께 확인해 주세요';reset();}});}
 
-/* 학생 화면 */
-function showStudentScreen(student){
-  showScreen('scr-student');
-  document.getElementById('student-name-disp').textContent=student.name+' 학생';
-  if(!D.progress[student.id])D.progress[student.id]={};
+function switchTab(t) {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+    document.getElementById('tab-'+t).classList.add('active');
+    document.getElementById('sec-'+t).classList.add('active');
+    if(t === 'std') renderStdList();
+    else renderWbList();
+}
 
-  // 학생 메시지 팝업 (처음 진입시)
-  const msgs=(D.studentMsgs&&D.studentMsgs[student.id])||[];
-  if(msgs.length&&!window._studentMsgShown){
-    window._studentMsgShown=true;
-    setTimeout(()=>{
-      let popHtml=`<div style="text-align:center;margin-bottom:14px">
-        <span style="font-size:28px">💌</span>
-        <div style="font-size:15px;font-weight:500;margin-top:4px">선생님 메시지</div>
-        <div style="font-size:11px;color:#aaa;margin-top:2px">${msgs.length}개의 메시지</div>
-      </div>`;
-      msgs.forEach(m=>{
-        popHtml+=`<div style="background:${m.type==='cheer'?'#E8F4FD':'#FFF3E0'};border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:4px solid ${m.type==='cheer'?'#5BA4D4':'#FF9800'}">
-          <div style="font-size:11px;font-weight:600;color:${m.type==='cheer'?'#185FA5':'#E65100'};margin-bottom:5px">${m.type==='cheer'?'💪 칭찬/격려':'📋 숙제/할일'}</div>
-          <div style="font-size:13px;color:#333;white-space:pre-wrap;line-height:1.7">${m.text}</div>
-          <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:right">${m.date}</div>
+function renderStdList() {
+    const cont = document.getElementById('sec-std');
+    let html = `<button class="btn btn-g" style="width:100%; margin-bottom:15px;" onclick="addStdModal()">+ 신규 학생 등록</button>`;
+    if(D.students.length === 0) html += `<p style="text-align:center; color:#888;">등록된 학생이 없습니다.</p>`;
+    D.students.forEach(s => {
+        html += `<div class="card">
+            <div style="font-weight:bold;">${s.name}</div>
+            <div style="font-size:12px; color:#888; margin:5px 0;">학생PIN: ${s.studentPin} | 학부모PIN: ${s.pin}</div>
+            <div style="display:flex; gap:5px;">
+                <button class="btn" onclick="assignWbModal('${s.id}')">교재 배정</button>
+                <button class="btn btn-r" onclick="deleteStd('${s.id}')">삭제</button>
+            </div>
         </div>`;
-      });
-      popHtml+=`<button class="btn btn-g" style="width:100%;margin-top:4px;padding:10px" onclick="closeM()">확인</button>`;
-      openModal(popHtml);
-    },400);
-  }
-
-  // 메시지 버튼 표시
-  window._currentStudentId=student.id;
-  const msgBtn=document.getElementById('student-msg-btn');
-  if(msgBtn)msgBtn.style.display=msgs.length?'block':'none';
-
-  const wbIds=student.wbIds||[];const retries=getTotalRetries(student.id);const stats=getStudentStats(student.id);
-  const hw=D.homework&&D.homework[student.id];
-  let html=`<div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:500">내 진도</div><span class="badge bg-purple">${stats.pct}%</span></div>
-    <div class="progress-bar"><div class="progress-fill-p" style="width:${stats.pct}%"></div></div>
-    ${cheerBox(retries)}
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px">
-      <div class="stat"><div class="stat-n" style="color:#0F6E56">${stats.done}</div><div class="stat-l">정답</div></div>
-      <div class="stat" style="background:#FAEEDA"><div style="margin-top:2px">${retryIcons(retries)}</div><div class="stat-l" style="color:#854F0B">재시도</div></div>
-      <div class="stat"><div class="stat-n" style="color:#888">${wbIds.length}</div><div class="stat-l">문제집</div></div>
-    </div>
-  </div>
-  ${hw&&hw.from&&hw.to?`
-  <div style="background:${hw.done?'#E1F5EE':'#F3E5F5'};border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid ${hw.done?'#9FE1CB':'#CE93D8'}">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-      <span style="font-size:18px">${hw.done?'✅':'📚'}</span>
-      <div style="flex:1">
-        <div style="font-size:13px;font-weight:600;color:${hw.done?'#0F6E56':'#6A1B9A'}">오늘의 숙제</div>
-        <div style="font-size:12px;color:#888">${hw.from}쪽 ~ ${hw.to}쪽 (총 ${hw.to-hw.from+1}쪽)</div>
-      </div>
-      ${hw.done?`<span style="font-size:10px;color:#0F6E56;font-weight:500">${hw.doneAt}</span>`:''}
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px">
-      ${Array.from({length:hw.to-hw.from+1},(_,i)=>{
-        const page=hw.from+i;
-        const checked=(hw.checkedPages||[]).includes(page);
-        return`<label style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;background:${checked?'#E1F5EE':'#fff'};border:1px solid ${checked?'#1D9E75':'#ddd'};border-radius:8px;cursor:pointer;font-size:11px;color:${checked?'#0F6E56':'#888'}">
-          <input type="checkbox" ${checked?'checked':''} onchange="toggleHwPage('${student.id}',${page},this)" style="accent-color:#1D9E75;width:16px;height:16px">
-          <span style="font-weight:${checked?'600':'400'}">${page}</span>
-        </label>`;
-      }).join('')}
-    </div>
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-      <div style="flex:1;font-size:12px;color:#6A1B9A;font-weight:500">${(hw.checkedPages||[]).length} / ${hw.to-hw.from+1} 쪽 완료</div>
-      <button onclick="checkAllHw('${student.id}')" style="padding:5px 10px;background:#f0f0ec;border:1px solid #ddd;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit">전체선택</button>
-      <button onclick="uncheckAllHw('${student.id}')" style="padding:5px 10px;background:#f0f0ec;border:1px solid #ddd;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit">전체해제</button>
-    </div>
-    ${!hw.done?`<button onclick="submitHw('${student.id}')" style="width:100%;padding:12px;background:#9C27B0;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">🎉 숙제 완료!</button>`
-    :`<div style="display:flex;gap:8px"><div style="flex:1;text-align:center;font-size:12px;color:#0F6E56;font-weight:500;padding:10px;background:#fff;border-radius:8px">👏 완료했어요!</div>
-    <button onclick="cancelHw('${student.id}')" style="padding:10px 14px;background:#fff;color:#888;border:1px solid #ddd;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit">수정</button></div>`}
-  </div>`:''}
-  <div class="notice">선생님이 입력한 문제는 수정 불가</div>`;
-  if(!wbIds.length){
-    html+=`<div class="card" style="text-align:center;padding:20px;color:#aaa;font-size:13px">배정된 문제집이 없어요.<br>선생님께 문의해 주세요.</div>`;
-  } else {
-    wbIds.forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
-      html+=`<div class="wb-header">📚 ${wb.name}</div>`;
-      wb.chapters.forEach(ch=>{
-        let chDone=0,chTotal=0;
-        for(let i=ch.start;i<=ch.end;i++){chTotal++;const p=getP(student.id,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')chDone++;}
-        const pct=chTotal?Math.round(chDone/chTotal*100):0;
-        const isDone=chDone===chTotal&&chTotal>0;
-        html+=`<div onclick="showStudentChapter('${student.id}','${wbId}','${ch.id}')" style="display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid ${isDone?'#9FE1CB':'#eee'};border-radius:10px;margin-bottom:8px;cursor:pointer;background:${isDone?'#f0faf6':'#fff'}">
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:500;margin-bottom:4px">${ch.name} ${isDone?'<span style="color:#0F6E56;font-size:12px">✅ 완료!</span>':''}</div>
-            <div style="height:5px;background:#eee;border-radius:3px;overflow:hidden;margin-bottom:3px"><div style="height:100%;width:${pct}%;background:${isDone?'#534AB7':'#9FE1CB'};border-radius:3px"></div></div>
-            <div style="font-size:11px;color:#aaa">${chDone}/${chTotal} 문제 완료 (${pct}%)</div>
-          </div>
-          <div style="font-size:18px;margin-left:12px;color:#bbb">›</div>
-        </div>`;
-      });
     });
-  }
-  document.getElementById('student-content').innerHTML=html;
+    cont.innerHTML = html;
 }
 
-function showStudentChapter(sid,wbId,chId){
-  const student=D.students.find(s=>s.id===sid);
-  const wb=getWb(wbId);const ch=wb.chapters.find(c=>c.id===chId);
-  let chDone=0,chTotal=0;
-  for(let i=ch.start;i<=ch.end;i++){chTotal++;const p=getP(sid,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')chDone++;}
-  const isDone=chDone===chTotal&&chTotal>0;
-  document.getElementById('student-name-disp').textContent=ch.name;
-  let html=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-    <button onclick="showStudentScreen(D.students.find(s=>s.id==='${sid}'))" style="background:none;border:none;color:#534AB7;cursor:pointer;font-size:13px;padding:0;font-family:inherit">← 단원 목록</button>
-    <span style="font-size:11px;color:#aaa">${wb.name}</span>
-  </div>
-  ${isDone?'<div style="background:#E1F5EE;border-radius:8px;padding:8px 12px;font-size:13px;color:#0F6E56;font-weight:500;margin-bottom:10px;text-align:center">✅ 이 단원 완료!</div>':''}
-  <div class="notice" style="margin-bottom:10px">선생님이 입력한 문제는 수정 불가</div>`;
-  for(let i=ch.start;i<=ch.end;i++){
-    const key=`${ch.id}_${i}`;const p=getP(sid,wbId,key);
-    const teacherSet=p.teacher&&p.teacher.history&&p.teacher.history.length>0;const eff=effectiveCurrent(p);
-    const tH=p.teacher.history||[],sH=p.student.history||[];
-    const histHtml=[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">나</span>`)].join('');
-    html+=`<div class="prob-row"><div class="prob-num">${i}</div><div class="ox-wrap">
-      <button class="ox-btn ${eff==='O'?'o-on':''}" ${teacherSet?'disabled':''} onclick="markStudentOXch('${sid}','${wbId}','${key}','O','${chId}')">O</button>
-      <button class="ox-btn ${eff==='X'?'x-on':''}" ${teacherSet?'disabled':''} onclick="markStudentOXch('${sid}','${wbId}','${key}','X','${chId}')">X</button>
-      </div><span class="who-tag ${teacherSet?'who-t':'who-s'}">${teacherSet?'선생님':'내입력'}</span>
-      <div class="history-wrap">${histHtml}</div></div>`;
-  }
-  const wI=[];for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p))wI.push({num:i,p});}
-  if(wI.length){
-    html+=`<div class="wrong-section"><div class="wrong-section-title">오답 이력 (${wI.length}문제)</div>`;
-    wI.forEach(({num,p})=>{p._chId=chId;html+=wrongItemHtml(sid,wbId,num,p,'student');});
-    html+=`</div>`;
-  }
-  html+=`<div style="margin-top:12px"><button class="btn" onclick="showStudentScreen(D.students.find(s=>s.id==='${sid}'))" style="width:100%;padding:10px">← 단원 목록으로</button></div>`;
-  document.getElementById('student-content').innerHTML=html;
-}
-function refreshWrongSection(sid,wbId,chId){
-  showChapterDetail(sid,wbId,chId);
-}
-function toggleHwPage(sid,page,cb){
-  if(!D.homework||!D.homework[sid])return;
-  if(!D.homework[sid].checkedPages)D.homework[sid].checkedPages=[];
-  if(cb.checked){
-    if(!D.homework[sid].checkedPages.includes(page))D.homework[sid].checkedPages.push(page);
-  } else {
-    D.homework[sid].checkedPages=D.homework[sid].checkedPages.filter(p=>p!==page);
-    D.homework[sid].done=false;
-  }
-  save();
-  // 체크 카운트 업데이트
-  const hw=D.homework[sid];
-  const total=hw.to-hw.from+1;
-  const checked=(hw.checkedPages||[]).length;
-  const countEl=document.querySelector('[data-hw-count]');
-  if(countEl)countEl.textContent=`${checked} / ${total} 쪽 완료`;
-  // 라벨 색상 업데이트
-  const label=cb.closest('label');
-  if(label){
-    label.style.background=cb.checked?'#E1F5EE':'#fff';
-    label.style.borderColor=cb.checked?'#1D9E75':'#ddd';
-    label.querySelector('span').style.color=cb.checked?'#0F6E56':'#888';
-    label.querySelector('span').style.fontWeight=cb.checked?'600':'400';
-  }
-}
-function checkAllHw(sid){
-  if(!D.homework||!D.homework[sid])return;
-  const hw=D.homework[sid];
-  hw.checkedPages=Array.from({length:hw.to-hw.from+1},(_,i)=>hw.from+i);
-  save();
-  const student=D.students.find(s=>s.id===sid);if(student)showStudentScreen(student);
-}
-function uncheckAllHw(sid){
-  if(!D.homework||!D.homework[sid])return;
-  D.homework[sid].checkedPages=[];
-  D.homework[sid].done=false;
-  save();
-  const student=D.students.find(s=>s.id===sid);if(student)showStudentScreen(student);
-}
-function submitHw(sid){
-  if(!D.homework||!D.homework[sid])return;
-  const hw=D.homework[sid];
-  const total=hw.to-hw.from+1;
-  const checked=(hw.checkedPages||[]).length;
-  if(checked===0){alert('최소 1쪽 이상 체크해 주세요!');return;}
-  const date=new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
-  hw.done=true;
-  hw.studentPage=checked;
-  hw.doneAt=date;
-  save();
-  const student=D.students.find(s=>s.id===sid);
-  if(student)showStudentScreen(student);
-}
-function cancelHw(sid){
-  if(!D.homework||!D.homework[sid])return;
-  D.homework[sid].done=false;
-  save();
-  const student=D.students.find(s=>s.id===sid);
-  if(student)showStudentScreen(student);
-}
-function markStudentOXch(sid,wbId,key,mark,chId){
-  const p=getP(sid,wbId,key);if(!p.student)p.student={history:[],current:null};
-  if(p.student.current===mark){p.student.history.pop();p.student.current=p.student.history.length?p.student.history[p.student.history.length-1]:null;}
-  else{p.student.history.push(mark);p.student.current=mark;}
-  setP(sid,wbId,key,p);showStudentChapter(sid,wbId,chId);
+function addStdModal() {
+    openModal(`
+        <h3>학생 추가</h3>
+        <input id="new-name" class="inp" placeholder="학생 이름">
+        <input id="new-pin" class="inp" placeholder="부모님용 PIN (4자리)" maxlength="4">
+        <input id="new-stdpin" class="inp" placeholder="학생용 PIN (4자리)" maxlength="4">
+        <button class="btn btn-g" style="width:100%" onclick="saveStd()">저장</button>
+    `);
 }
 
-/* 선생님 진도 입력 - 단원 목록 */
-function showDetail(sid,wbId){
-  const s=D.students.find(x=>x.id===sid);const wb=getWb(wbId);
-  if(!D.progress[sid])D.progress[sid]={};if(!D.progress[sid][wbId])D.progress[sid][wbId]={};
-
-  let html=`<div class="mtitle">${s.name} · ${wb.name}</div>
-  <div style="font-size:12px;color:#888;margin-bottom:12px">단원을 선택해서 채점하세요</div>`;
-
-  wb.chapters.forEach(ch=>{
-    let chDone=0,chTotal=0;
-    for(let i=ch.start;i<=ch.end;i++){chTotal++;const p=getP(sid,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')chDone++;}
-    const pct=chTotal?Math.round(chDone/chTotal*100):0;
-    const isDone=chDone===chTotal&&chTotal>0;
-    html+=`<div onclick="showChapterDetail('${sid}','${wbId}','${ch.id}')" style="display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid ${isDone?'#9FE1CB':'#eee'};border-radius:10px;margin-bottom:8px;cursor:pointer;background:${isDone?'#f0faf6':'#fff'}">
-      <div style="flex:1">
-        <div style="font-size:13px;font-weight:500;margin-bottom:4px">${ch.name} ${isDone?'<span style="color:#0F6E56;font-size:12px">✅ 완료!</span>':''}</div>
-        <div style="height:5px;background:#eee;border-radius:3px;overflow:hidden;margin-bottom:3px"><div style="height:100%;width:${pct}%;background:${isDone?'#1D9E75':'#5DCAA5'};border-radius:3px"></div></div>
-        <div style="font-size:11px;color:#aaa">${chDone}/${chTotal} 문제 완료 (${pct}%)</div>
-      </div>
-      <div style="font-size:18px;margin-left:12px;color:#aaa">›</div>
-    </div>`;
-  });
-  html+=`<div style="margin-top:8px;display:flex;justify-content:flex-end"><button class="btn" onclick="closeM();renderStudents()">닫기</button></div>`;
-  openModal(html);
+function saveStd() {
+    const name = document.getElementById('new-name').value;
+    const pin = document.getElementById('new-pin').value;
+    const stdpin = document.getElementById('new-stdpin').value;
+    if(!name || pin.length < 4) return alert("내용을 확인하세요");
+    D.students.push({ id: Date.now().toString(), name, pin, studentPin: stdpin, wbIds: [] });
+    saveData(); renderStdList(); closeM();
 }
 
-/* 선생님 진도 입력 - 단원별 채점 */
-function showChapterDetail(sid,wbId,chId){
-  const s=D.students.find(x=>x.id===sid);const wb=getWb(wbId);const ch=wb.chapters.find(c=>c.id===chId);
-  let chDone=0,chTotal=0;
-  for(let i=ch.start;i<=ch.end;i++){chTotal++;const p=getP(sid,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')chDone++;}
-  const isDone=chDone===chTotal&&chTotal>0;
-
-  let html=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-    <button onclick="showDetail('${sid}','${wbId}')" style="background:none;border:none;color:#1D9E75;cursor:pointer;font-size:13px;padding:0">← 뒤로</button>
-  </div>
-  <div class="mtitle" style="margin-bottom:4px">${ch.name}</div>
-  ${isDone?'<div style="background:#E1F5EE;border-radius:8px;padding:8px 12px;font-size:12px;color:#0F6E56;font-weight:500;margin-bottom:10px">✅ 이 단원 완료!</div>':''}
-  <div style="display:flex;gap:8px;font-size:11px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
-    <span class="badge bg-green" style="font-size:10px">O 정답</span><span class="badge bg-red" style="font-size:10px">X 오답</span>
-    <span class="who-tag who-t" style="padding:2px 7px;border-radius:8px">선생님</span><span class="who-tag who-s" style="padding:2px 7px;border-radius:8px">학생</span>
-    <span style="font-size:11px;color:#aaa">같은 버튼 다시 누르면 취소</span>
-  </div>`;
-
-  for(let i=ch.start;i<=ch.end;i++){
-    const key=`${ch.id}_${i}`;const p=getP(sid,wbId,key);
-    const tH=p.teacher.history||[],sH=p.student.history||[];
-    const histHtml=[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">학생</span>`)].join('');
-    html+=`<div class="prob-row" id="trow-${sid}-${wbId}-${key}"><div class="prob-num">${i}</div><div class="ox-wrap">
-      <button class="ox-btn ${p.teacher.current==='O'?'o-on':''}" onclick="markTeacherOX('${sid}','${wbId}','${key}','O',this)">O</button>
-      <button class="ox-btn ${p.teacher.current==='X'?'x-on':''}" onclick="markTeacherOX('${sid}','${wbId}','${key}','X',this)">X</button>
-      </div><span class="who-tag ${tH.length?'who-t':sH.length?'who-s':''}" style="${!tH.length&&!sH.length?'visibility:hidden':''}">${tH.length?'선생님':sH.length?'학생':''}</span>
-      <div class="history-wrap" id="thist-${sid}-${wbId}-${key}">${histHtml}</div></div>`;
-  }
-  const wI=[];for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p))wI.push({num:i,p});}
-  if(wI.length){html+=`<div class="wrong-section" id="twrong-${sid}-${wbId}-${chId}"><div class="wrong-section-title">오답 이력 (${wI.length}문제)</div>`;
-    wI.forEach(({num,p})=>{p._chId=chId;html+=wrongItemHtml(sid,wbId,num,p,'teacher');});
-    html+=`</div>`;}else html+=`<div id="twrong-${sid}-${wbId}-${chId}"></div>`;
-
-  html+=`<div style="margin-top:16px;display:flex;gap:8px;justify-content:flex-end">
-    <button class="btn" onclick="showDetail('${sid}','${wbId}')">← 단원 목록</button>
-    <button class="btn btn-g" onclick="closeM();renderStudents()">완료</button>
-  </div>`;
-  openModal(html);
-}
-function markTeacherOX(sid,wbId,key,mark,btn){
-  const p=getP(sid,wbId,key);if(!p.teacher)p.teacher={history:[],current:null};
-  if(p.teacher.current===mark){p.teacher.history.pop();p.teacher.current=p.teacher.history.length?p.teacher.history[p.teacher.history.length-1]:null;}
-  else{p.teacher.history.push(mark);p.teacher.current=mark;}
-  setP(sid,wbId,key,p);
-  const row=document.getElementById(`trow-${sid}-${wbId}-${key}`);
-  if(row){const btns=row.querySelectorAll('.ox-btn');btns[0].className='ox-btn'+(p.teacher.current==='O'?' o-on':'');btns[1].className='ox-btn'+(p.teacher.current==='X'?' x-on':'');
-    const histEl=document.getElementById(`thist-${sid}-${wbId}-${key}`);
-    if(histEl){const tH=p.teacher.history||[],sH=p.student&&p.student.history||[];histEl.innerHTML=[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">학생</span>`)].join('');}}
-  const chId=key.split('_').slice(0,2).join('_');const wb=getWb(wbId);const ch=wb&&wb.chapters.find(c=>c.id===chId);
-  const el=document.getElementById(`twrong-${sid}-${wbId}-${chId}`);
-  if(ch&&el){const wI=[];for(let i=ch.start;i<=ch.end;i++){const p=getP(sid,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p))wI.push({num:i,p});}
-    if(!wI.length){el.className='';el.innerHTML='';return;}
-    let html=`<div class="wrong-section-title">오답 이력 (${wI.length}문제)</div>`;
-    wI.forEach(({num,p})=>{const tH=p.teacher.history||[],sH=p.student&&p.student.history||[];const xCnt=[...tH,...sH].filter(h=>h==='X').length;const solved=effectiveCurrent(p)==='O';
-      html+=`<div class="wrong-item"><div class="wrong-num">${num}번</div><div class="wrong-hist">${[...tH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span>`),...sH.map(h=>`<span class="hist-chip ${h==='O'?'hist-o':'hist-x'}">${h}</span><span class="hist-t">학</span>`)].join('')}</div>${xCnt>0?`<span class="retry-badge ${xCnt>=3?'many':''}">×${xCnt}</span>`:''}<div style="font-size:11px;color:#888">${solved?'해결':''}</div></div>`;});
-    el.className='wrong-section';el.innerHTML=html;}
-}
-
-/* 학생 목록 */
-function renderStudents(){
-  const el=document.getElementById('sec-students');
-  if(!D.students.length){el.innerHTML=`<div class="card" style="text-align:center;padding:28px"><div style="font-size:14px;color:#888;margin-bottom:10px">등록된 학생이 없어요</div><button class="btn btn-g" onclick="openAddStudent()">+ 학생 추가하기</button></div>`;return;}
-  el.innerHTML=`<div style="display:flex;justify-content:flex-end;margin-bottom:8px"><button class="btn btn-g" onclick="openAddStudent()">+ 학생 추가</button></div>`+D.students.map(s=>renderSCard(s)).join('');
-}
-function renderSCard(s){
-  const stats=getStudentStats(s.id);const retries=getTotalRetries(s.id);
-  const [bg,fg]=SCOLS[s.name.charCodeAt(0)%SCOLS.length];
-  const wbNames=(s.wbIds||[]).map(id=>{const w=getWb(id);return w?`<span class="wb-chip">${w.name}</span>`:''}).join('');
-  return`<div class="card">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div class="avatar" style="background:${bg};color:${fg}">${s.name.charAt(0)}</div>
-        <div>
-          <div style="font-size:14px;font-weight:500">${s.name} <span class="badge bg-gray" style="font-size:10px">${s.grade||''}</span>${retries>=5?'<span style="font-size:13px;margin-left:4px">🔥</span>':''}</div>
-          <div style="font-size:11px;color:#aaa;margin-top:2px">학부모 <span class="pin-badge">${s.pin||'미설정'}</span> 학생 <span class="pin-badge-p">${s.studentPin||'미설정'}</span></div>
-          <div style="margin-top:4px">${wbNames||'<span style="font-size:11px;color:#ccc">문제집 미배정</span>'}</div>
-        </div>
-      </div>
-      <button class="btn btn-r" onclick="delStudent('${s.id}')">삭제</button>
-    </div>
-    ${cheerBox(retries)}
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:8px">
-      <div class="stat"><div class="stat-n">${stats.pct}%</div><div class="stat-l">진도율</div></div>
-      <div class="stat"><div class="stat-n" style="color:#0F6E56">${stats.done}</div><div class="stat-l">정답</div></div>
-      <div class="stat"><div class="stat-n" style="color:#993C1D">${stats.wrongCnt}</div><div class="stat-l">오답</div></div>
-      <div class="stat" style="background:#FAEEDA"><div style="margin-top:2px">${retryIcons(retries)}</div><div class="stat-l" style="color:#854F0B">재시도</div></div>
-    </div>
-    <div class="progress-bar" style="margin-bottom:8px"><div class="progress-fill" style="width:${stats.pct}%"></div></div>
-    <div style="display:flex;flex-wrap:wrap;gap:5px">
-      ${(s.wbIds||[]).map(wbId=>{const w=getWb(wbId);return w?`<button class="btn" onclick="showDetail('${s.id}','${wbId}')" style="font-size:11px;padding:4px 10px">📖 ${w.name}</button>`:''}).join('')}
-      <button class="btn btn-b" onclick="assignWbModal('${s.id}')" style="font-size:11px;padding:4px 10px">문제집 배정</button>
-      <button class="btn" onclick="memoModal('${s.id}')" style="font-size:11px;padding:4px 10px;background:#FFF9C4;border-color:#F9A825;color:#795548">📝 엄마메모</button>
-      <button class="btn" onclick="studentMsgModal('${s.id}')" style="font-size:11px;padding:4px 10px;background:#E8F4FD;border-color:#5BA4D4;color:#185FA5">💌 학생메시지</button>
-      <button class="btn" onclick="hwModal('${s.id}')" style="font-size:11px;padding:4px 10px;background:#F3E5F5;border-color:#9C27B0;color:#6A1B9A">📚 숙제검사</button>
-    </div>
-    ${(()=>{const hw=D.homework&&D.homework[s.id];if(!hw)return'';const done=hw.done;const assigned=hw.from&&hw.to;if(!assigned)return'';return`<div style="margin-top:6px;padding:8px 10px;background:${done?'#E1F5EE':'#FFF3E0'};border-radius:8px;font-size:12px;display:flex;align-items:center;gap:8px"><span>${done?'✅':'📖'}</span><span style="color:${done?'#0F6E56':'#E65100'};font-weight:500">${hw.from}~${hw.to}쪽 ${done?`완료! (${hw.doneAt})`:'미완료'}</span>${done&&hw.studentPage?`<span style="color:#888;font-size:11px">(학생: ${hw.studentPage}쪽까지)</span>`:''}</div>`;})()}
-  </div>`;
-}
-
-/* 숙제 검사 */
-function hwModal(sid){
-  const s=D.students.find(x=>x.id===sid);
-  if(!D.homework)D.homework={};
-  const hw=D.homework[sid]||{from:1,to:30,done:false,studentPage:null,doneAt:null};
-  const done=hw.done;
-  let html=`<div class="mtitle">📚 ${s.name} 숙제 검사</div>
-
-    <!-- 선생님 숙제 지정 -->
-    <div style="background:#F3E5F5;border-radius:10px;padding:12px;margin-bottom:12px">
-      <div style="font-size:12px;font-weight:600;color:#6A1B9A;margin-bottom:10px">📌 숙제 범위 지정</div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <div style="flex:1">
-          <div class="lbl">시작 쪽</div>
-          <input type="number" class="inp" id="hw-from" value="${hw.from||1}" min="1" max="300" style="text-align:center;font-size:16px;font-weight:500">
-        </div>
-        <div style="font-size:18px;color:#888;padding-top:18px">~</div>
-        <div style="flex:1">
-          <div class="lbl">끝 쪽</div>
-          <input type="number" class="inp" id="hw-to" value="${hw.to||30}" min="1" max="300" style="text-align:center;font-size:16px;font-weight:500">
-        </div>
-      </div>
-      <button class="btn" style="width:100%;background:#9C27B0;color:#fff;border-color:#9C27B0;padding:9px" onclick="saveHwRange('${sid}')">숙제 범위 저장 & 전송</button>
-    </div>
-
-    <!-- 완료 현황 -->
-    <div style="background:#f8f8f6;border-radius:10px;padding:12px;margin-bottom:12px">
-      <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:8px">📋 완료 현황</div>
-      ${hw.from&&hw.to?`
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px;background:${done?'#E1F5EE':'#fff'};border-radius:8px;border:1px solid ${done?'#9FE1CB':'#eee'}">
-          <div>
-            <div style="font-size:13px;font-weight:500;color:${done?'#0F6E56':'#333'}">${done?'✅ 완료':'⏳ 진행중'}</div>
-            <div style="font-size:11px;color:#888;margin-top:2px">${hw.from}~${hw.to}쪽 · ${(hw.checkedPages||[]).length}/${hw.to-hw.from+1}쪽 체크됨</div>
-            ${done&&hw.doneAt?`<div style="font-size:10px;color:#aaa;margin-top:2px">${hw.doneAt} 완료</div>`:''}
-          </div>
-          ${done?`<button class="btn btn-r" onclick="resetHw('${sid}')" style="font-size:11px">초기화</button>`:''}
-        </div>
-      `:'<div style="color:#aaa;font-size:13px;text-align:center;padding:8px">숙제 범위를 먼저 지정해 주세요</div>'}
-    </div>
-
-    <!-- 이전 숙제 기록 -->
-    ${(D.hwHistory&&D.hwHistory[sid]&&D.hwHistory[sid].length)?`
-    <div style="margin-bottom:12px">
-      <div style="font-size:12px;font-weight:600;color:#888;margin-bottom:6px">📅 이전 숙제 기록</div>
-      ${D.hwHistory[sid].slice(0,5).map(h=>`
-        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0ec;font-size:12px">
-          <span style="color:#555">${h.from}~${h.to}쪽</span>
-          <span style="color:${h.done?'#0F6E56':'#993C1D'}">${h.done?`✅ ${h.doneAt}`:'미완료'}</span>
-        </div>`).join('')}
-    </div>`:''}
-
-    <div style="display:flex;justify-content:flex-end"><button class="btn" onclick="closeM();renderStudents()">닫기</button></div>`;
-  openModal(html);
-}
-function saveHwRange(sid){
-  const from=parseInt(document.getElementById('hw-from').value);
-  const to=parseInt(document.getElementById('hw-to').value);
-  if(isNaN(from)||isNaN(to)||from<1||to<1){alert('쪽수를 올바르게 입력해 주세요');return;}
-  if(from>to){alert(`시작 쪽(${from})이 끝 쪽(${to})보다 클 수 없어요`);return;}
-  if(!D.homework)D.homework={};
-  // 이전 숙제 기록 저장
-  if(D.homework[sid]&&D.homework[sid].from){
-    if(!D.hwHistory)D.hwHistory={};
-    if(!D.hwHistory[sid])D.hwHistory[sid]=[];
-    D.hwHistory[sid].unshift({...D.homework[sid]});
-    if(D.hwHistory[sid].length>10)D.hwHistory[sid]=D.hwHistory[sid].slice(0,10);
-  }
-  D.homework[sid]={from,to,done:false,studentPage:null,doneAt:null};
-  save();alert(`${from}~${to}쪽 숙제가 학생에게 전송됐어요!`);hwModal(sid);
-}
-function resetHw(sid){
-  if(!confirm('숙제 완료를 초기화할까요?'))return;
-  if(D.homework&&D.homework[sid])D.homework[sid].done=false;
-  save();hwModal(sid);
-}
-
-/* 학생 개인 메시지 */
-function studentMsgModal(sid){
-  const s=D.students.find(x=>x.id===sid);
-  if(!D.studentMsgs)D.studentMsgs={};
-  const msgs=D.studentMsgs[sid]||[];
-  let msgList=msgs.map((m,i)=>`
-    <div style="background:${m.type==='cheer'?'#E8F4FD':'#FFF3E0'};border-radius:8px;padding:10px;margin-bottom:8px;border-left:4px solid ${m.type==='cheer'?'#5BA4D4':'#FF9800'}">
-      <div style="font-size:11px;font-weight:600;color:${m.type==='cheer'?'#185FA5':'#E65100'};margin-bottom:4px">${m.type==='cheer'?'💪 칭찬/격려':'📋 숙제/할일'}</div>
-      <div style="font-size:12px;color:#333;white-space:pre-wrap;line-height:1.6">${m.text}</div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-        <div style="font-size:10px;color:#aaa">${m.date}</div>
-        <button onclick="deleteStudentMsg('${sid}',${i})" style="background:none;border:none;color:#D85A30;cursor:pointer;font-size:11px">삭제</button>
-      </div>
-    </div>`).join('');
-  let html=`<div class="mtitle">💌 ${s.name} 학생 메시지</div>
-    <div style="font-size:12px;color:#888;margin-bottom:10px">학생이 앱에 들어오면 팝업으로 보여요</div>
-    <div>${msgList||'<div style="color:#aaa;font-size:13px;text-align:center;padding:12px">메시지가 없어요</div>'}</div>
-    <div style="margin-top:12px;background:#f8f8f6;border-radius:10px;padding:12px">
-      <div class="lbl" style="margin-bottom:6px">메시지 유형</div>
-      <div style="display:flex;gap:6px;margin-bottom:10px">
-        <button id="smt-cheer" onclick="selectMsgType('cheer')" style="flex:1;padding:8px;border-radius:8px;border:2px solid #5BA4D4;background:#E8F4FD;font-size:12px;font-weight:500;cursor:pointer;color:#185FA5;font-family:inherit">💪 칭찬/격려</button>
-        <button id="smt-task" onclick="selectMsgType('task')" style="flex:1;padding:8px;border-radius:8px;border:1px solid #ddd;background:#f5f5f3;font-size:12px;font-weight:500;cursor:pointer;color:#888;font-family:inherit">📋 숙제/할일</button>
-      </div>
-      <div class="lbl">메시지 내용</div>
-      <textarea class="inp" id="new-student-msg" placeholder="예: 오늘 수업 정말 열심히 했어요! 👍" style="height:80px;resize:none;margin-bottom:8px"></textarea>
-      <button class="btn btn-g" style="width:100%" onclick="addStudentMsg('${sid}')">메시지 보내기</button>
-    </div>
-    <div style="margin-top:10px;display:flex;justify-content:flex-end"><button class="btn" onclick="closeM();renderStudents()">닫기</button></div>`;
-  openModal(html);
-  window._currentMsgType='cheer';
-}
-function selectMsgType(type){
-  window._currentMsgType=type;
-  const isCheer=type==='cheer';
-  document.getElementById('smt-cheer').style.cssText=`flex:1;padding:8px;border-radius:8px;border:${isCheer?'2px solid #5BA4D4':'1px solid #ddd'};background:${isCheer?'#E8F4FD':'#f5f5f3'};font-size:12px;font-weight:500;cursor:pointer;color:${isCheer?'#185FA5':'#888'};font-family:inherit`;
-  document.getElementById('smt-task').style.cssText=`flex:1;padding:8px;border-radius:8px;border:${!isCheer?'2px solid #FF9800':'1px solid #ddd'};background:${!isCheer?'#FFF3E0':'#f5f5f3'};font-size:12px;font-weight:500;cursor:pointer;color:${!isCheer?'#E65100':'#888'};font-family:inherit`;
-}
-function addStudentMsg(sid){
-  const text=document.getElementById('new-student-msg').value.trim();
-  if(!text){alert('메시지 내용을 입력해 주세요');return;}
-  if(!D.studentMsgs)D.studentMsgs={};
-  if(!D.studentMsgs[sid])D.studentMsgs[sid]=[];
-  const date=new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
-  D.studentMsgs[sid].unshift({text,date,type:window._currentMsgType||'cheer'});
-  save();studentMsgModal(sid);
-}
-function deleteStudentMsg(sid,idx){
-  if(!confirm('이 메시지를 삭제할까요?'))return;
-  D.studentMsgs[sid].splice(idx,1);save();studentMsgModal(sid);
-}
-function showStudentMsgPopup(){
-  const sid=window._currentStudentId;if(!sid)return;
-  const msgs=(D.studentMsgs&&D.studentMsgs[sid])||[];if(!msgs.length)return;
-  let popHtml=`<div style="text-align:center;margin-bottom:14px">
-    <span style="font-size:28px">💌</span>
-    <div style="font-size:15px;font-weight:500;margin-top:4px">선생님 메시지</div>
-    <div style="font-size:11px;color:#aaa;margin-top:2px">${msgs.length}개의 메시지</div>
-  </div>`;
-  msgs.forEach(m=>{
-    popHtml+=`<div style="background:${m.type==='cheer'?'#E8F4FD':'#FFF3E0'};border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:4px solid ${m.type==='cheer'?'#5BA4D4':'#FF9800'}">
-      <div style="font-size:11px;font-weight:600;color:${m.type==='cheer'?'#185FA5':'#E65100'};margin-bottom:5px">${m.type==='cheer'?'💪 칭찬/격려':'📋 숙제/할일'}</div>
-      <div style="font-size:13px;color:#333;white-space:pre-wrap;line-height:1.7">${m.text}</div>
-      <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:right">${m.date}</div>
-    </div>`;
-  });
-  popHtml+=`<button class="btn btn-g" style="width:100%;margin-top:4px;padding:10px" onclick="closeM()">확인</button>`;
-  openModal(popHtml);
-}
-function memoModal(sid){
-  const s=D.students.find(x=>x.id===sid);
-  if(!D.memos)D.memos={};
-  const memos=D.memos[sid]||[];
-  let memoList=memos.map((m,i)=>`
-    <div style="background:#FFF9C4;border-radius:8px;padding:10px;margin-bottom:8px;position:relative;border-left:4px solid #F9A825">
-      <div style="font-size:12px;color:#555;white-space:pre-wrap;line-height:1.6">${m.text}</div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-        <div style="font-size:10px;color:#aaa">${m.date}</div>
-        <button onclick="deleteMemo('${sid}',${i})" style="background:none;border:none;color:#D85A30;cursor:pointer;font-size:11px">삭제</button>
-      </div>
-    </div>`).join('');
-  let html=`<div class="mtitle">📝 ${s.name} 학부모 메모</div>
-    <div style="font-size:12px;color:#888;margin-bottom:10px">학부모 화면 상단에 포스트잇으로 표시돼요</div>
-    <div id="memo-list">${memoList||'<div style="color:#aaa;font-size:13px;text-align:center;padding:12px">메모가 없어요</div>'}</div>
-    <div style="margin-top:10px">
-      <div class="lbl">새 메모 작성</div>
-      <textarea class="inp" id="new-memo-text" placeholder="예: 이번 주 덧셈 단원 복습 필요해요! 집에서도 한 번 봐주세요 😊" style="height:80px;resize:none;margin-bottom:8px"></textarea>
-      <button class="btn btn-g" style="width:100%" onclick="addMemo('${sid}')">메모 추가</button>
-    </div>
-    <div style="margin-top:10px;display:flex;justify-content:flex-end"><button class="btn" onclick="closeM();renderStudents()">닫기</button></div>`;
-  openModal(html);
-}
-function addMemo(sid){
-  const text=document.getElementById('new-memo-text').value.trim();
-  if(!text){alert('메모 내용을 입력해 주세요');return;}
-  if(!D.memos)D.memos={};
-  if(!D.memos[sid])D.memos[sid]=[];
-  const date=new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
-  D.memos[sid].unshift({text,date});
-  save();
-  memoModal(sid);
-}
-function deleteMemo(sid,idx){
-  if(!confirm('이 메모를 삭제할까요?'))return;
-  D.memos[sid].splice(idx,1);
-  save();
-  memoModal(sid);
-}
-
-/* 문제집 배정 */
-function assignWbModal(sid){
-  const s=D.students.find(x=>x.id===sid);
-  if(!D.workbooks.length){alert('먼저 문제집 탭에서 문제집을 등록해 주세요.');return;}
-  let html=`<div class="mtitle">${s.name} 문제집 배정</div><div style="font-size:12px;color:#888;margin-bottom:12px">체크한 문제집의 진도를 관리해요</div>`;
-  D.workbooks.forEach(wb=>{const checked=(s.wbIds||[]).includes(wb.id);
-    html+=`<label style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid ${checked?'#1D9E75':'#eee'};border-radius:8px;margin-bottom:6px;cursor:pointer;background:${checked?'#f0faf6':'#fff'}">
-      <input type="checkbox" ${checked?'checked':''} onchange="toggleWbAssign('${sid}','${wb.id}',this)" style="width:16px;height:16px;accent-color:#1D9E75">
-      <div><div style="font-size:13px;font-weight:500">${wb.name}</div><div style="font-size:11px;color:#888">${wb.chapters.length}단원</div></div></label>`;
-  });
-  html+=`<div style="margin-top:12px;display:flex;justify-content:flex-end"><button class="btn btn-g" onclick="closeM();renderStudents()">완료</button></div>`;
-  openModal(html);
-}
-function toggleWbAssign(sid,wbId,cb){
-  const s=D.students.find(x=>x.id===sid);if(!s.wbIds)s.wbIds=[];
-  if(cb.checked){if(!s.wbIds.includes(wbId))s.wbIds.push(wbId);}else{s.wbIds=s.wbIds.filter(id=>id!==wbId);}
-  save();cb.parentElement.style.borderColor=cb.checked?'#1D9E75':'#eee';cb.parentElement.style.background=cb.checked?'#f0faf6':'#fff';
-}
-
-function showMemoPopup(){
-  const student=window._currentParentStudent;if(!student)return;
-  const memos=(D.memos&&D.memos[student.id])||[];
-  if(!memos.length)return;
-  let popHtml=`<div style="text-align:center;margin-bottom:14px">
-    <span style="font-size:28px">📝</span>
-    <div style="font-size:15px;font-weight:500;margin-top:4px">선생님 메모</div>
-    <div style="font-size:11px;color:#aaa;margin-top:2px">${memos.length}개의 메모</div>
-  </div>`;
-  memos.forEach(m=>{
-    popHtml+=`<div style="background:#FFF9C4;border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:4px solid #F9A825;box-shadow:0 2px 8px rgba(249,168,37,0.2)">
-      <div style="font-size:13px;color:#333;white-space:pre-wrap;line-height:1.7">${m.text}</div>
-      <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:right">${m.date}</div>
-    </div>`;
-  });
-  popHtml+=`<button class="btn btn-g" style="width:100%;margin-top:4px;padding:10px" onclick="closeM()">확인</button>`;
-  openModal(popHtml);
-}
+function deleteStd(id) { if(confirm("삭제할까요?")) { D.students = D.students.filter(s => s.id !== id); saveData(); renderStdList(); } }
 
 /* 문제집 관리 */
-function renderWorkbooks(){
-  const el=document.getElementById('sec-workbooks');
-  let html=`<div style="display:flex;justify-content:flex-end;margin-bottom:8px"><button class="btn btn-g" onclick="openAddWbModal()">+ 문제집 추가</button></div>`;
-  if(!D.workbooks.length){html+=`<div class="card" style="text-align:center;padding:28px;color:#aaa;font-size:13px">등록된 문제집이 없어요.<br>위 버튼으로 추가해 주세요.</div>`;}
-  else{D.workbooks.forEach(wb=>{
-    const using=D.students.filter(s=>(s.wbIds||[]).includes(wb.id));
-    html+=`<div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <div><div style="font-size:14px;font-weight:500">${wb.name}</div>
-          <div style="font-size:11px;color:#888;margin-top:2px">${wb.chapters.length}단원 · 사용 학생 ${using.length}명${using.length?` (${using.map(s=>s.name).join(', ')})`:''}</div></div>
-        <div style="display:flex;gap:5px"><button class="btn" onclick="editWbModal('${wb.id}')" style="font-size:11px;padding:4px 8px">단원 편집</button><button class="btn btn-r" onclick="delWb('${wb.id}')">삭제</button></div>
-      </div>
-      ${wb.chapters.map(ch=>`<div style="padding:4px 0;border-bottom:1px solid #f5f5f3;font-size:12px;display:flex;justify-content:space-between"><span>${ch.name}</span><span style="color:#aaa">${ch.start}~${ch.end}번</span></div>`).join('')}
-    </div>`;
-  });}
-  el.innerHTML=html;
-}
-let _newWbChapters=[];let _selectedTplKey='';
-function openAddWbModal(){
-  _newWbChapters=[];_selectedTplKey='';
-  let html=`<div class="mtitle">새 문제집 추가</div>
-
-    <!-- 방법 선택 탭 -->
-    <div style="display:flex;gap:6px;margin-bottom:14px">
-      <button id="wbtab-tpl" onclick="switchWbTab('tpl')" style="flex:1;padding:10px;border-radius:8px;border:2px solid #1D9E75;background:#E1F5EE;font-size:13px;font-weight:500;cursor:pointer;color:#0F6E56;font-family:inherit">📋 템플릿 선택</button>
-      <button id="wbtab-manual" onclick="switchWbTab('manual')" style="flex:1;padding:10px;border-radius:8px;border:1px solid #ddd;background:#f5f5f3;font-size:13px;font-weight:500;cursor:pointer;color:#888;font-family:inherit">✏️ 직접 입력</button>
-    </div>
-
-    <!-- 템플릿 탭 -->
-    <div id="wbpanel-tpl">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-        ${Object.entries(TEMPLATES).map(([k,t])=>`<div class="tpl-card" onclick="selectTplForNew('${k}',this)" data-key="${k}" style="padding:12px"><div style="font-size:24px;margin-bottom:5px">${t.icon}</div><div style="font-size:13px;font-weight:500">${t.name}</div><div style="font-size:11px;color:#888;margin-top:2px">${t.chapters.length}단원 자동 구성</div></div>`).join('')}
-      </div>
-      <div id="tpl-preview" style="margin-bottom:4px"></div>
-    </div>
-
-    <!-- 직접 입력 탭 -->
-    <div id="wbpanel-manual" style="display:none">
-      <div class="lbl">문제집 이름</div>
-      <input class="inp" id="manual-wb-name" placeholder="예: 수학의 힘 5-1학기" style="margin-bottom:12px">
-
-      <div style="background:#E6F1FB;border-radius:8px;padding:10px;font-size:12px;color:#185FA5;margin-bottom:12px;line-height:1.8">
-        <div style="font-weight:500;margin-bottom:4px">단원 추가 방법</div>
-        단원 이름 → <b>1단원. 분수의 곱셈</b><br>
-        시작 번호 → <b>1</b> &nbsp;(첫 번째 문제 번호)<br>
-        끝 번호 → <b>20</b> &nbsp;(마지막 문제 번호)
-      </div>
-
-      <div id="manual-ch-list" style="margin-bottom:10px"></div>
-
-      <div style="background:#f8f8f6;border-radius:10px;padding:12px">
-        <div class="lbl">단원 이름</div>
-        <input class="inp" id="manual-ch-name" placeholder="예: 1단원. 분수의 곱셈" style="margin-bottom:8px">
-        <div style="display:flex;gap:8px;margin-bottom:8px">
-          <div class="f1"><div class="lbl">시작 번호 (첫 문제)</div><input class="inp" type="number" id="manual-ch-s" placeholder="1" min="1"></div>
-          <div class="f1"><div class="lbl">끝 번호 (마지막 문제)</div><input class="inp" type="number" id="manual-ch-e" placeholder="20" min="1"></div>
-        </div>
-        <button class="btn" style="width:100%;padding:9px" onclick="addChManual()">+ 단원 추가</button>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
-      <button class="btn" onclick="closeM()">취소</button>
-      <button class="btn btn-g" onclick="saveNewWb()">저장</button>
-    </div>`;
-  openModal(html);
-}
-
-function switchWbTab(t){
-  const isTpl=t==='tpl';
-  document.getElementById('wbtab-tpl').style.cssText=`flex:1;padding:10px;border-radius:8px;border:${isTpl?'2px solid #1D9E75':'1px solid #ddd'};background:${isTpl?'#E1F5EE':'#f5f5f3'};font-size:13px;font-weight:500;cursor:pointer;color:${isTpl?'#0F6E56':'#888'};font-family:inherit`;
-  document.getElementById('wbtab-manual').style.cssText=`flex:1;padding:10px;border-radius:8px;border:${!isTpl?'2px solid #1D9E75':'1px solid #ddd'};background:${!isTpl?'#E1F5EE':'#f5f5f3'};font-size:13px;font-weight:500;cursor:pointer;color:${!isTpl?'#0F6E56':'#888'};font-family:inherit`;
-  document.getElementById('wbpanel-tpl').style.display=isTpl?'block':'none';
-  document.getElementById('wbpanel-manual').style.display=isTpl?'none':'block';
-  _newWbChapters=[];_selectedTplKey='';
-  renderTplPreview();renderManualChList();
-}
-
-function renderTplPreview(){
-  const el=document.getElementById('tpl-preview');if(!el)return;
-  if(!_newWbChapters.length){el.innerHTML='';return;}
-  el.innerHTML=`<div style="background:#f8f8f6;border-radius:8px;padding:10px;font-size:12px"><div style="color:#888;margin-bottom:6px">선택된 단원 (${_newWbChapters.length}개)</div>`+
-    _newWbChapters.map((ch,i)=>`<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f0f0ec;font-size:11px"><span>${ch.name}</span><span style="color:#aaa">${ch.start}~${ch.end}번</span></div>`).join('')+`</div>`;
-}
-
-function renderManualChList(){
-  const el=document.getElementById('manual-ch-list');if(!el)return;
-  if(!_newWbChapters.length){el.innerHTML='';return;}
-  el.innerHTML=`<div style="font-size:12px;color:#888;margin-bottom:6px">추가된 단원 (${_newWbChapters.length}개)</div>`+
-    _newWbChapters.map((ch,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f5f5f3;font-size:12px">
-      <span>${ch.name}</span>
-      <div style="display:flex;align-items:center;gap:8px"><span style="color:#aaa">${ch.start}~${ch.end}번 (${ch.end-ch.start+1}문제)</span><button onclick="removeManualCh(${i})" style="background:none;border:none;color:#D85A30;cursor:pointer;font-size:13px">✕</button></div>
-    </div>`).join('');
-}
-
-function addChManual(){
-  const name=document.getElementById('manual-ch-name').value.trim();
-  const s=parseInt(document.getElementById('manual-ch-s').value);
-  const e=parseInt(document.getElementById('manual-ch-e').value);
-  if(!name){alert('단원 이름을 입력해 주세요.\n예: 1단원. 자연수의 혼합계산');return;}
-  if(isNaN(s)||s<1){alert('시작 번호를 입력해 주세요.\n예: 문제가 1번부터 시작하면 → 1');return;}
-  if(isNaN(e)||e<1){alert('끝 번호를 입력해 주세요.\n예: 문제가 20번까지 있으면 → 20');return;}
-  if(s>e){alert(`시작 번호(${s})가 끝 번호(${e})보다 클 수 없어요.`);return;}
-  _newWbChapters.push({id:'c_'+Date.now(),name,start:s,end:e});
-  document.getElementById('manual-ch-name').value='';
-  document.getElementById('manual-ch-s').value='';
-  document.getElementById('manual-ch-e').value='';
-  renderManualChList();
-}
-function removeManualCh(i){_newWbChapters.splice(i,1);renderManualChList();}
-function selectTplForNew(k,el){
-  document.querySelectorAll('#mbox .tpl-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');
-  _selectedTplKey=k;const t=TEMPLATES[k];
-  _newWbChapters=t.chapters.map(ch=>({...ch,id:'c_'+Date.now()+'_'+Math.random().toString(36).slice(2)}));
-  renderTplPreview();
-}
-function saveNewWb(){
-  // 활성 탭 확인
-  const isTpl=document.getElementById('wbpanel-tpl')&&document.getElementById('wbpanel-tpl').style.display!=='none';
-  let name='';
-  if(isTpl){
-    // 템플릿 탭: 선택된 템플릿 이름 사용
-    if(!_selectedTplKey){alert('템플릿을 선택해 주세요.\n또는 직접 입력 탭을 이용해 주세요.');return;}
-    name=TEMPLATES[_selectedTplKey].name;
-  } else {
-    // 직접 입력 탭: 입력한 이름 사용
-    name=document.getElementById('manual-wb-name').value.trim();
-    if(!name){alert('문제집 이름을 입력해 주세요.');return;}
-  }
-  if(!_newWbChapters.length){alert('단원을 하나 이상 추가해 주세요.');return;}
-  D.workbooks.push({id:'wb_'+Date.now(),name,chapters:_newWbChapters});
-  save();closeM();renderWorkbooks();updateWbDisp();
-}
-function editWbModal(wbId){
-  const wb=getWb(wbId);window._editWbId=wbId;window._editChapters=[...wb.chapters.map(ch=>({...ch}))];
-  let html=`<div class="mtitle">${wb.name} 단원 편집</div><div id="edit-ch-list"></div>
-    <div style="background:#f8f8f6;border-radius:10px;padding:12px;margin-top:10px">
-      <div style="font-size:12px;font-weight:500;margin-bottom:8px">단원 추가</div>
-      <div class="lbl">단원 이름</div><input class="inp" id="edit-ch-name" placeholder="예: 3단원. 도형" style="margin-bottom:8px">
-      <div style="display:flex;gap:8px;margin-bottom:8px">
-        <div class="f1"><div class="lbl">시작 번호</div><input class="inp" type="number" id="edit-ch-s" placeholder="1" min="1"></div>
-        <div class="f1"><div class="lbl">끝 번호</div><input class="inp" type="number" id="edit-ch-e" placeholder="20" min="1"></div>
-      </div>
-      <button class="btn" style="width:100%" onclick="addChToEdit()">+ 단원 추가</button>
-    </div>
-    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button class="btn" onclick="closeM()">취소</button><button class="btn btn-g" onclick="saveEditWb()">저장</button></div>`;
-  openModal(html);renderEditChapters();
-}
-function renderEditChapters(){const el=document.getElementById('edit-ch-list');if(!el)return;el.innerHTML=window._editChapters.map((ch,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f3;font-size:12px"><span>${ch.name}</span><div style="display:flex;align-items:center;gap:6px"><span style="color:#aaa">${ch.start}~${ch.end}번</span><button onclick="removeEditCh(${i})" style="background:none;border:none;color:#D85A30;cursor:pointer;font-size:11px">✕</button></div></div>`).join('');}
-function addChToEdit(){
-  const name=document.getElementById('edit-ch-name').value.trim();const s=parseInt(document.getElementById('edit-ch-s').value);const e=parseInt(document.getElementById('edit-ch-e').value);
-  if(!name){alert('단원 이름을 입력해 주세요.');return;}if(isNaN(s)||s<1||isNaN(e)||e<1){alert('시작/끝 번호를 입력해 주세요.');return;}if(s>e){alert(`시작 번호(${s})가 끝 번호(${e})보다 클 수 없어요.`);return;}
-  window._editChapters.push({id:'c_'+Date.now(),name,start:s,end:e});
-  document.getElementById('edit-ch-name').value='';document.getElementById('edit-ch-s').value='';document.getElementById('edit-ch-e').value='';renderEditChapters();
-}
-function removeEditCh(i){window._editChapters.splice(i,1);renderEditChapters();}
-function saveEditWb(){if(!window._editChapters.length){alert('단원을 하나 이상 추가해 주세요.');return;}const wb=getWb(window._editWbId);wb.chapters=window._editChapters;save();closeM();renderWorkbooks();}
-function delWb(wbId){
-  const wb=getWb(wbId);const using=D.students.filter(s=>(s.wbIds||[]).includes(wbId));
-  if(!confirm(using.length?`'${wb.name}' 삭제 시 ${using.map(s=>s.name).join(', ')}의 진도 데이터도 삭제됩니다. 계속할까요?`:`'${wb.name}'을 삭제할까요?`))return;
-  D.workbooks=D.workbooks.filter(w=>w.id!==wbId);D.students.forEach(s=>{s.wbIds=(s.wbIds||[]).filter(id=>id!==wbId);if(D.progress[s.id])delete D.progress[s.id][wbId];});
-  save();renderWorkbooks();updateWbDisp();
-}
-function updateWbDisp(){document.getElementById('wb-disp').textContent=D.workbooks.length?`문제집 ${D.workbooks.length}개 등록됨`:'문제집을 먼저 등록해 주세요';}
-
-/* 전체 현황 */
-function renderOverview(){
-  const el=document.getElementById('sec-overview');
-  let html='';
-  D.workbooks.forEach(wb=>{
-    const students=D.students.filter(s=>(s.wbIds||[]).includes(wb.id));if(!students.length)return;
-    html+=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:10px">📚 ${wb.name}</div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;min-width:300px"><thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid #e8e8e4;color:#888">학생</th>`;
-    wb.chapters.forEach(ch=>{const s=ch.name.length>5?ch.name.slice(0,4)+'…':ch.name;html+=`<th style="text-align:center;padding:6px 4px;border-bottom:1px solid #e8e8e4;color:#888;font-weight:400;font-size:11px" title="${ch.name}">${s}</th>`;});
-    html+=`<th style="text-align:center;padding:6px 8px;border-bottom:1px solid #e8e8e4;color:#888">전체</th><th style="text-align:center;padding:6px 4px;border-bottom:1px solid #e8e8e4;color:#854F0B;font-size:11px">재시도</th></tr></thead><tbody>`;
-    students.forEach(s=>{let td=0,ta=0;const retries=getTotalRetries(s.id);
-      html+=`<tr><td style="padding:6px 8px;border-bottom:1px solid #f5f5f3"><span style="font-weight:500">${s.name}</span><br><span style="font-size:10px;color:#aaa">${s.grade||''}</span></td>`;
-      wb.chapters.forEach(ch=>{let d=0,a=0,w=0;for(let i=ch.start;i<=ch.end;i++){a++;ta++;const p=getP(s.id,wb.id,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O'){d++;td++;}if(hasAnyWrong(p))w++;}
-        const pct=a?Math.round(d/a*100):0;const c=pct===100?'#0F6E56':pct>50?'#1D9E75':pct>0?'#BA7517':'#ccc';
-        html+=`<td style="text-align:center;padding:6px 4px;border-bottom:1px solid #f5f5f3;color:${c}">${pct}%${w?`<br><span style="color:#993C1D;font-size:10px">오${w}</span>`:''}</td>`;});
-      const tp=ta?Math.round(td/ta*100):0;
-      html+=`<td style="text-align:center;padding:6px 8px;border-bottom:1px solid #f5f5f3;font-weight:500">${tp}%</td><td style="text-align:center;padding:6px 4px;border-bottom:1px solid #f5f5f3">${retryIcons(retries)}</td></tr>`;});
-    html+=`</tbody></table></div></div>`;
-  });
-  if(!html)html=`<div class="card" style="text-align:center;padding:28px;color:#888;font-size:13px">문제집을 등록하고 학생에게 배정해 주세요</div>`;
-  el.innerHTML=html;
-}
-
-/* 그래프 */
-function renderGraph(){
-  const el=document.getElementById('sec-graph');
-  if(!D.students.length||!D.workbooks.length){el.innerHTML=`<div class="card" style="text-align:center;padding:28px;color:#888;font-size:13px">학생과 문제집을 먼저 등록해 주세요</div>`;return;}
-  el.innerHTML=`<div class="graph-tab">
-    <button class="graph-tab-btn active" id="gtab-progress" onclick="switchGraph('progress')">진도율</button>
-    <button class="graph-tab-btn" id="gtab-wrong" onclick="switchGraph('wrong')">오답 현황</button>
-    <button class="graph-tab-btn" id="gtab-retry" onclick="switchGraph('retry')">재시도 랭킹</button>
-  </div>
-  <div id="g-progress"></div><div id="g-wrong" style="display:none"></div><div id="g-retry" style="display:none"></div>`;
-  renderGProgress();
-}
-function switchGraph(t){
-  document.querySelectorAll('.graph-tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('gtab-'+t).classList.add('active');
-  ['progress','wrong','retry'].forEach(x=>{document.getElementById('g-'+x).style.display=x===t?'block':'none';});
-  if(t==='progress')renderGProgress();if(t==='wrong')renderGWrong();if(t==='retry')renderGRetry();
-}
-function renderGProgress(){
-  const el=document.getElementById('g-progress');let html='';
-  D.workbooks.forEach(wb=>{const students=D.students.filter(s=>(s.wbIds||[]).includes(wb.id));if(!students.length)return;
-    html+=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:10px">📚 ${wb.name}</div>`;
-    wb.chapters.forEach(ch=>{html+=`<div style="margin-bottom:10px"><div style="font-size:11px;color:#888;margin-bottom:4px">${ch.name}</div>`;
-      students.forEach(s=>{let done=0,total=0;for(let i=ch.start;i<=ch.end;i++){total++;const p=getP(s.id,wb.id,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')done++;}
-        const pct=total?Math.round(done/total*100):0;
-        html+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div style="font-size:11px;color:#555;width:60px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.name}</div><div style="flex:1;height:14px;background:#f0f0ec;border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pct===100?'#1D9E75':pct>60?'#5DCAA5':pct>30?'#FAC775':'#F0997B'};border-radius:4px"></div></div><div style="font-size:10px;color:#888;width:28px;text-align:right">${pct}%</div></div>`;});
-      html+=`</div>`;}); html+=`</div>`;});
-  el.innerHTML=html||`<div class="card" style="text-align:center;padding:20px;color:#aaa">데이터가 없어요</div>`;
-}
-function renderGWrong(){
-  const el=document.getElementById('g-wrong');
-  let html=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:12px">학생별 오답 해결 현황</div>`;
-  D.students.forEach(s=>{let total=0,solved=0,unsolved=0;
-    (s.wbIds||[]).forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;wb.chapters.forEach(ch=>{for(let i=ch.start;i<=ch.end;i++){const p=getP(s.id,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p)){total++;if(effectiveCurrent(p)==='O')solved++;else unsolved++;}}});});
-    if(!total){html+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-size:11px;color:#555;width:60px;text-align:right">${s.name}</div><div style="flex:1;font-size:12px;color:#ccc;padding-left:8px">오답 없음</div></div>`;return;}
-    const sp=Math.round(solved/total*100);
-    html+=`<div style="margin-bottom:10px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><div style="font-size:11px;color:#555;width:60px;text-align:right">${s.name}</div><div style="flex:1;height:14px;background:#f0f0ec;border-radius:4px;overflow:hidden;display:flex"><div style="width:${sp}%;background:#1D9E75"></div><div style="width:${100-sp}%;background:#F0997B"></div></div><div style="font-size:10px;color:#888;width:30px;text-align:right">${total}개</div></div><div style="display:flex;gap:10px;padding-left:68px;font-size:10px;color:#888"><span style="color:#0F6E56">해결 ${solved}</span><span style="color:#993C1D">미해결 ${unsolved}</span><span>해결률 ${sp}%</span></div></div>`;});
-  html+=`</div>`;el.innerHTML=html;
-}
-function renderGRetry(){
-  const el=document.getElementById('g-retry');
-  const ranked=[...D.students].map(s=>({s,r:getTotalRetries(s.id)})).sort((a,b)=>b.r-a.r);
-  const medals=['🥇','🥈','🥉'];
-  let html=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:4px">재시도 노력 랭킹</div><div style="font-size:11px;color:#aaa;margin-bottom:12px">오답을 다시 푼 횟수 기준</div>`;
-  ranked.forEach(({s,r},idx)=>{
-    if(!r){html+=`<div class="retry-rank"><div style="width:28px;color:#ccc;font-size:12px">${idx+1}</div><div style="flex:1;color:#aaa;font-size:13px">${s.name}</div><div style="font-size:12px;color:#ccc">없음</div></div>`;return;}
-    const c=cheerMsg(r);const max=ranked[0].r||1;const pct=Math.round(r/max*100);
-    html+=`<div class="retry-rank"><div style="width:28px;font-size:16px">${medals[idx]||`<span style="font-size:12px;color:#aaa">${idx+1}</span>`}</div><div style="flex:1">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:13px;font-weight:500">${s.name}</span><span style="font-size:13px">${retryIcons(r)}</span></div>
-      <div style="height:8px;background:#f0f0ec;border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${idx===0?'#FAC775':idx===1?'#D3D1C7':'#B4B2A9'};border-radius:4px"></div></div>
-      ${c?`<div style="font-size:11px;color:#854F0B;margin-top:3px">${c.icon} ${c.msg}</div>`:''}
-    </div></div>`;});
-  html+=`</div>`;el.innerHTML=html;
-}
-
-/* 학부모 화면 */
-let _parentStudent=null;
-function showParentScreen(student){
-  _parentStudent=student;showScreen('scr-parent');
-  document.getElementById('parent-title').textContent=student.name+' 학생 진도 현황';
-  ['ptab-progress','ptab-graph'].forEach((id,i)=>document.getElementById(id).classList.toggle('active',i===0));
-  ['parent-progress','parent-graph'].forEach((id,i)=>{document.getElementById(id).classList.toggle('active',i===0);});
-  renderParentProgress(student);
-}
-function switchParentTab(t){
-  document.getElementById('ptab-progress').classList.toggle('active',t==='progress');document.getElementById('ptab-graph').classList.toggle('active',t==='graph');
-  document.getElementById('parent-progress').classList.toggle('active',t==='progress');document.getElementById('parent-graph').classList.toggle('active',t==='graph');
-  if(t==='graph'&&_parentStudent)renderParentGraph(_parentStudent);
-}
-function renderParentProgress(student){
-  const wbIds=student.wbIds||[];const stats=getStudentStats(student.id);const retries=getTotalRetries(student.id);
-  const [bg,fg]=SCOLS[student.name.charCodeAt(0)%SCOLS.length];
-
-  // 포스트잇 팝업 - 메모 있으면 자동으로 띄우기
-  const memos=(D.memos&&D.memos[student.id])||[];
-
-  // 메모 다시보기 버튼 표시/숨김
-  const memoBtn=document.getElementById('memo-btn');
-  if(memoBtn)memoBtn.style.display=memos.length?'block':'none';
-  window._currentParentStudent=student;
-
-  if(memos.length){
-    setTimeout(()=>showMemoPopup(),400);
-  }
-
-  let html=`<div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-    <div class="avatar" style="background:${bg};color:${fg};width:44px;height:44px;font-size:16px">${student.name.charAt(0)}</div>
-    <div style="flex:1"><div style="font-size:15px;font-weight:500">${student.name}</div><div style="font-size:12px;color:#888">${student.grade||''}</div></div>
-    <span class="badge ${stats.pct===100?'bg-green':'bg-gray'}" style="font-size:13px">${stats.pct}%</span>
-  </div>${cheerBox(retries)}
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
-    <div class="stat"><div class="stat-n" style="color:#0F6E56">${stats.done}</div><div class="stat-l">정답</div></div>
-    <div class="stat"><div class="stat-n" style="color:#993C1D">${stats.wrongCnt}</div><div class="stat-l">오답</div></div>
-    <div class="stat" style="background:#FAEEDA"><div style="margin-top:2px">${retryIcons(retries)}</div><div class="stat-l" style="color:#854F0B">재시도</div></div>
-  </div>
-  <div style="font-size:12px;color:#888;margin-bottom:4px">전체 ${stats.done} / ${stats.total} 문제</div>
-  <div class="progress-bar"><div class="progress-fill" style="width:${stats.pct}%"></div></div></div>`;
-  wbIds.forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
-    html+=`<div class="wb-header">📚 ${wb.name}</div>`;
-    wb.chapters.forEach(ch=>{let cd=0,ca=0;const chWrong=[];
-      for(let i=ch.start;i<=ch.end;i++){ca++;const p=getP(student.id,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')cd++;if(hasAnyWrong(p))chWrong.push({num:i,p});}
-      const cp=ca?Math.round(cd/ca*100):0;
-      html+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-size:13px;font-weight:500">${ch.name}</div><span style="font-size:12px;font-weight:500;color:${cp===100?'#0F6E56':'#888'}">${cp}%</span></div>
-        <div class="progress-bar" style="margin-bottom:${chWrong.length?'10px':'0'}"><div class="progress-fill" style="width:${cp}%"></div></div>`;
-      if(chWrong.length){html+=`<div style="font-size:11px;font-weight:500;color:#888;margin-bottom:5px">오답 이력</div>`;
-        chWrong.forEach(({num,p})=>{p._chId=ch.id;html+=wrongItemHtml(student.id,wbId,num,p,'parent');});}
-      html+=`</div>`;});
-  });
-  html+=`<div style="font-size:11px;color:#bbb;text-align:center;margin-top:8px">📅 ${new Date().toLocaleDateString('ko-KR')} 기준</div>`;
-  document.getElementById('parent-progress').innerHTML=html;
-}
-function renderParentGraph(student){
-  const el=document.getElementById('parent-graph');const wbIds=student.wbIds||[];const retries=getTotalRetries(student.id);
-  if(!wbIds.length){el.innerHTML=`<div class="card" style="text-align:center;padding:20px;color:#aaa">배정된 문제집이 없어요</div>`;return;}
-  let html='';
-  wbIds.forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;
-    html+=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:10px">📚 ${wb.name} 단원별 정답률</div>`;
-    wb.chapters.forEach(ch=>{let done=0,total=0;for(let i=ch.start;i<=ch.end;i++){total++;const p=getP(student.id,wbId,`${ch.id}_${i}`);if(effectiveCurrent(p)==='O')done++;}
-      const pct=total?Math.round(done/total*100):0;const color=pct===100?'#1D9E75':pct>60?'#5DCAA5':pct>30?'#FAC775':'#F0997B';
-      html+=`<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px"><span style="color:#555">${ch.name}</span><span style="font-weight:500;color:${color}">${pct}%</span></div><div style="height:12px;background:#f0f0ec;border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${color};border-radius:4px"></div></div></div>`;});
-    html+=`</div>`;});
-  let totalWrong=0,solved=0,unsolved=0;
-  wbIds.forEach(wbId=>{const wb=getWb(wbId);if(!wb)return;wb.chapters.forEach(ch=>{for(let i=ch.start;i<=ch.end;i++){const p=getP(student.id,wbId,`${ch.id}_${i}`);if(hasAnyWrong(p)){totalWrong++;if(effectiveCurrent(p)==='O')solved++;else unsolved++;}}});});
-  html+=`<div class="card"><div style="font-size:13px;font-weight:500;margin-bottom:10px">재시도 & 오답 현황</div>
-    <div style="padding:10px;background:#FAEEDA;border-radius:8px;display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="font-size:24px">${retries>=10?'🏆':retries>=5?'🔥':retries>=2?'⭐':'✨'}</div>
-      <div><div style="font-size:11px;color:#854F0B;margin-bottom:2px">총 재시도 횟수</div><div>${retryIcons(retries)}</div>${cheerMsg(retries)?`<div style="font-size:11px;color:#0F6E56;margin-top:2px">${cheerMsg(retries).msg}</div>`:''}</div>
-    </div>
-    ${totalWrong?`<div style="display:flex;justify-content:space-around;margin-bottom:8px">
-      <div style="text-align:center"><div style="font-size:20px;font-weight:500;color:#993C1D">${totalWrong}</div><div style="font-size:11px;color:#888">총 오답</div></div>
-      <div style="text-align:center"><div style="font-size:20px;font-weight:500;color:#0F6E56">${solved}</div><div style="font-size:11px;color:#888">해결</div></div>
-      <div style="text-align:center"><div style="font-size:20px;font-weight:500;color:#D85A30">${unsolved}</div><div style="font-size:11px;color:#888">미해결</div></div>
-    </div><div style="height:14px;background:#f0f0ec;border-radius:8px;overflow:hidden;display:flex"><div style="width:${Math.round(solved/totalWrong*100)}%;background:#1D9E75"></div><div style="background:#F0997B;flex:1"></div></div>`
-    :'<div style="color:#aaa;font-size:13px;text-align:center;padding:8px">오답 없음</div>'}
-  </div>`;
-  el.innerHTML=html;
-}
-
-/* 학생 추가/삭제 */
-function openAddStudent(){
-  let html=`<div class="mtitle">학생 추가</div>
-    <div class="lbl">이름</div><input class="inp" id="sn" placeholder="예: 홍길동" style="margin-bottom:8px">
-    <div class="lbl">학년</div><select class="sel" id="sg" style="margin-bottom:10px">
-      <option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option>
-      <option>중1</option><option>중2</option><option>중3</option><option>고1</option><option>고2</option><option>고3</option>
-    </select>
-    <div style="background:#f8f8f6;border-radius:8px;padding:12px;margin-bottom:10px">
-      <div style="font-size:12px;font-weight:500;margin-bottom:8px">PIN 설정</div>
-      <div class="lbl">학부모 PIN (4자리)</div><input class="inp" id="ppin-inp" placeholder="예: 1234" maxlength="4" type="number" style="margin-bottom:8px">
-      <div class="lbl">학생 PIN (4자리, 학부모와 달라야 함)</div><input class="inp" id="stupin-inp" placeholder="예: 5678" maxlength="4" type="number" style="margin-bottom:4px">
-      <div class="tip">각각 다른 번호로 설정해 주세요</div>
-    </div>
-    ${D.workbooks.length?`<div style="font-size:12px;color:#666;margin-bottom:6px;font-weight:500">문제집 배정 (나중에도 변경 가능)</div>
-    <div style="margin-bottom:12px">${D.workbooks.map(wb=>`<label style="display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:12px;margin-bottom:5px"><input type="checkbox" data-wbid="${wb.id}" style="accent-color:#1D9E75">${wb.name} <span style="color:#aaa;font-size:11px">(${wb.chapters.length}단원)</span></label>`).join('')}</div>`
-    :'<div style="font-size:12px;color:#aaa;margin-bottom:12px">문제집은 학생 등록 후 배정할 수 있어요</div>'}
-    <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" onclick="closeM()">취소</button><button class="btn btn-g" onclick="doAddStudent()">추가</button></div>`;
-  openModal(html);
-}
-function doAddStudent(){
-  const name=document.getElementById('sn').value.trim();const grade=document.getElementById('sg').value;
-  const ppin=document.getElementById('ppin-inp').value.trim();const stupin=document.getElementById('stupin-inp').value.trim();
-  if(!name){alert('이름을 입력해 주세요');return;}
-  if(ppin.length!==4||isNaN(ppin)){alert('학부모 PIN은 4자리 숫자로 입력해 주세요');return;}
-  if(stupin.length!==4||isNaN(stupin)){alert('학생 PIN은 4자리 숫자로 입력해 주세요');return;}
-  if(ppin===stupin){alert('학부모 PIN과 학생 PIN은 달라야 해요');return;}
-  const allPins=[...D.students.map(s=>s.pin),...D.students.map(s=>s.studentPin)];
-  if(allPins.includes(ppin)){alert('이미 사용 중인 학부모 PIN이에요');return;}
-  if(allPins.includes(stupin)){alert('이미 사용 중인 학생 PIN이에요');return;}
-  const wbIds=[];document.querySelectorAll('#mbox input[type=checkbox]:checked').forEach(cb=>{if(cb.dataset.wbid)wbIds.push(cb.dataset.wbid);});
-  const id='s_'+Date.now();D.students.push({id,name,grade,pin:ppin,studentPin:stupin,wbIds});D.progress[id]={};save();closeM();renderStudents();
-}
-function delStudent(sid){if(!confirm('이 학생을 삭제할까요?'))return;D.students=D.students.filter(s=>s.id!==sid);delete D.progress[sid];save();renderStudents();}
-function changePinModal(){
-  let html=`<div class="mtitle">선생님 PIN 변경</div><div class="lbl">현재 PIN</div><input class="inp" id="cur-pin" type="number" maxlength="4" style="margin-bottom:8px">
-    <div class="lbl">새 PIN (4자리)</div><input class="inp" id="new-pin" type="number" maxlength="4" style="margin-bottom:12px">
-    <div id="pin-change-err" style="color:#D85A30;font-size:12px;margin-bottom:8px"></div>
-    <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn" onclick="closeM()">취소</button><button class="btn btn-g" onclick="doChangePin()">변경</button></div>`;
-  openModal(html);
-}
-function doChangePin(){
-  const cur=document.getElementById('cur-pin').value.trim();const nw=document.getElementById('new-pin').value.trim();
-  if(cur!==D.adminPin){document.getElementById('pin-change-err').textContent='현재 PIN이 틀렸어요';return;}
-  if(nw.length!==4||isNaN(nw)){document.getElementById('pin-change-err').textContent='새 PIN은 4자리 숫자여야 해요';return;}
-  D.adminPin=nw;save();closeM();alert('PIN이 변경되었어요!');
-}
-function openTab(t){
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.sec').forEach(x=>x.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');document.getElementById('sec-'+t).classList.add('active');
-  if(t==='students')renderStudents();if(t==='workbooks')renderWorkbooks();if(t==='overview')renderOverview();if(t==='graph')renderGraph();
-}
-function openModal(html){document.getElementById('mbox').innerHTML=html;document.getElementById('modal').style.display='flex';}
-function closeM(){document.getElementById('modal').style.display='none';}
-function bgClose(e){if(e.target===document.getElementById('modal'))closeM();}
-
-// 앱 시작 - DB에서 데이터 로드
-(async()=>{
-  document.getElementById('scr-home').innerHTML+=`<div id="loading-msg" style="margin-top:20px;font-size:13px;color:#aaa">데이터 불러오는 중...</div>`;
-  await loadFromDB();
-  const lm=document.getElementById('loading-msg');if(lm)lm.remove();
-  updateWbDisp();
-})();
-
-// PWA 서비스워커 등록
-if('serviceWorker' in navigator){
-  const sw=`
-    const CACHE='hyundai-math-v1';
-    self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/']))));
-    self.addEventListener('fetch',e=>{
-      if(e.request.url.includes('supabase.co'))return;
-      e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+function renderWbList() {
+    const cont = document.getElementById('sec-wb');
+    let html = `<button class="btn btn-g" style="width:100%; margin-bottom:15px;" onclick="addWbModal()">+ 새 문제집 등록</button>`;
+    D.workbooks.forEach(w => {
+        html += `<div class="card">
+            <div style="font-weight:bold;">${w.name}</div>
+            <div style="font-size:12px; color:#888;">단원 수: ${w.chapters.length}개</div>
+            <button class="btn btn-r" style="margin-top:5px;" onclick="deleteWb('${w.id}')">삭제</button>
+        </div>`;
     });
-  `;
-  const blob=new Blob([sw],{type:'application/javascript'});
-  const url=URL.createObjectURL(blob);
-  navigator.serviceWorker.register(url).catch(()=>{});
+    cont.innerHTML = html;
 }
+
+function addWbModal() {
+    openModal(`
+        <h3>문제집 추가</h3>
+        <input id="wb-name" class="inp" placeholder="교재 이름 (예: 쎈 초등 5-1)">
+        <p style="font-size:12px; color:#888; margin-bottom:5px;">단원 설정 (이름, 시작번, 끝번)</p>
+        <div id="chapter-inputs">
+            <div style="display:flex; gap:2px; margin-bottom:5px;">
+                <input class="inp ch-n" style="flex:2" placeholder="단원명">
+                <input class="inp ch-s" style="flex:1" placeholder="시작" type="number">
+                <input class="inp ch-e" style="flex:1" placeholder="끝" type="number">
+            </div>
+        </div>
+        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="addChapterRow()">+ 단원 추가</button>
+        <button class="btn btn-g" style="width:100%" onclick="saveWb()">문제집 저장</button>
+    `);
+}
+
+function addChapterRow() {
+    const div = document.createElement('div');
+    div.style.display = 'flex'; div.style.gap = '2px'; div.style.marginBottom = '5px';
+    div.innerHTML = `<input class="inp ch-n" style="flex:2" placeholder="단원명"><input class="inp ch-s" style="flex:1" placeholder="시작" type="number"><input class="inp ch-e" style="flex:1" placeholder="끝" type="number">`;
+    document.getElementById('chapter-inputs').appendChild(div);
+}
+
+function saveWb() {
+    const name = document.getElementById('wb-name').value;
+    const chNames = document.querySelectorAll('.ch-n'), chStarts = document.querySelectorAll('.ch-s'), chEnds = document.querySelectorAll('.ch-e');
+    let chapters = [];
+    chNames.forEach((n, i) => {
+        if(n.value) chapters.push({ id: 'c'+i, name: n.value, start: parseInt(chStarts[i].value), end: parseInt(chEnds[i].value) });
+    });
+    D.workbooks.push({ id: 'wb'+Date.now(), name, chapters });
+    saveData(); renderWbList(); closeM();
+}
+
+function deleteWb(id) { if(confirm("삭제할까요?")) { D.workbooks = D.workbooks.filter(w => w.id !== id); saveData(); renderWbList(); } }
+
+/* 학생/학부모 메인 */
+function showUserMain(std, mode) {
+    showScreen('scr-main');
+    document.getElementById('user-title').textContent = `${std.name} ${mode === 'student' ? '학생' : '학부모님'}`;
+    renderUserContent(std, mode);
+}
+
+function renderUserContent(std, mode) {
+    const cont = document.getElementById('user-content');
+    let html = '';
+    if(!std.wbIds || std.wbIds.length === 0) {
+        html = '<p style="text-align:center; padding:40px; color:#888;">배정된 문제집이 없습니다.</p>';
+    } else {
+        std.wbIds.forEach(wbId => {
+            const wb = D.workbooks.find(w => w.id === wbId);
+            if(!wb) return;
+            html += `<div class="wb-header" style="font-weight:bold; color:#1D9E75; margin:15px 0 10px;">📚 ${wb.name}</div>`;
+            wb.chapters.forEach(ch => {
+                html += `<div class="card" onclick="openChapter('${std.id}', '${wb.id}', '${ch.id}', '${mode}')">
+                    <div style="font-size:14px; font-weight:500;">${ch.name}</div>
+                    <div style="font-size:11px; color:#888;">${ch.start} ~ ${ch.end}번</div>
+                </div>`;
+            });
+        });
+    }
+    cont.innerHTML = html;
+}
+
+function openChapter(sid, wbid, chid, mode) {
+    const wb = D.workbooks.find(w => w.id === wbid);
+    const ch = wb.chapters.find(c => c.id === chid);
+    let html = `<h3>${ch.name}</h3><div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top:15px;">`;
+    
+    for(let i=ch.start; i<=ch.end; i++) {
+        const key = `${sid}_${wbid}_${chid}_${i}`;
+        const val = D.progress[key] || '';
+        const color = val === 'O' ? '#E1F5EE' : (val === 'X' ? '#FAECE7' : '#fff');
+        const border = val === 'O' ? '#1D9E75' : (val === 'X' ? '#D85A30' : '#ddd');
+        
+        html += `<div style="border:1px solid ${border}; background:${color}; padding:8px; border-radius:8px; text-align:center;" 
+                 onclick="${mode === 'student' ? `toggleOX('${key}', '${sid}', '${wbid}', '${chid}')` : ''}">
+            <div style="font-size:10px; color:#888;">${i}</div>
+            <div style="font-weight:bold;">${val || '-'}</div>
+        </div>`;
+    }
+    html += `</div><button class="btn btn-g" style="width:100%; margin-top:20px;" onclick="closeM()">닫기</button>`;
+    openModal(html);
+}
+
+function toggleOX(key, sid, wbid, chid) {
+    const cur = D.progress[key];
+    if(!cur) D.progress[key] = 'O';
+    else if(cur === 'O') D.progress[key] = 'X';
+    else delete D.progress[key];
+    saveData();
+    openChapter(sid, wbid, chid, 'student'); // 리렌더링
+}
+
+/* 모달 기초 함수 */
+function openModal(html) { document.getElementById('mbox').innerHTML = html; document.getElementById('modal').style.display = 'flex'; }
+function closeM() { document.getElementById('modal').style.display = 'none'; }
+
+function assignWbModal(sid) {
+    const std = D.students.find(s => s.id === sid);
+    let html = `<h3>교재 배정 - ${std.name}</h3>`;
+    D.workbooks.forEach(w => {
+        const has = std.wbIds.includes(w.id);
+        html += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee;">
+            <span>${w.name}</span>
+            <button class="btn ${has?'btn-r':'btn-g'}" onclick="toggleAssign('${sid}', '${w.id}')">${has?'해제':'배정'}</button>
+        </div>`;
+    });
+    openModal(html);
+}
+function toggleAssign(sid, wbid) {
+    const std = D.students.find(s => s.id === sid);
+    if(std.wbIds.includes(wbid)) std.wbIds = std.wbIds.filter(id => id !== wbid);
+    else std.wbIds.push(wbid);
+    saveData(); assignWbModal(sid);
+}
+
+window.onload = loadData;
 </script>
 </body>
 </html>
